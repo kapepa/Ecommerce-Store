@@ -31,4 +31,14 @@ const getProducts = async (query: QueryProductsProps): Promise<ProductInt[] | []
   }
 }
 
-export { getProducts }
+const getOneProductById = async (id: string): Promise<ProductInt | null> => {
+  try {
+    const res = await fetch(`${url}/${id}`);
+
+    return res.json();
+  } catch (error) {
+    return null;
+  }
+}
+
+export { getProducts, getOneProductById }
