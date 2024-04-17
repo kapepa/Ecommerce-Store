@@ -2,7 +2,7 @@ import { BillboardInt } from "@/interface/billboard";
 import { FC } from "react";
 
 interface BillboardProps {
-  data: BillboardInt | null
+  data?: BillboardInt | null
 }
 
 const Billboard: FC<BillboardProps> = (props) => {

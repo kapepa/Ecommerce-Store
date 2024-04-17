@@ -12,4 +12,15 @@ const getCategories = async (): Promise<CategoryInt[]> => {
   }
 }
 
-export { getCategories }
+const getCategoryById = async (id: string): Promise<CategoryInt | null> => {
+  try {
+    const category = await fetch(`${url}/${id}`);
+
+    return category.json();
+  } catch (error) {
+    console.error(error)
+    return null;
+  }
+}
+
+export { getCategories, getCategoryById }
