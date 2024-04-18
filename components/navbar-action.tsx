@@ -3,6 +3,8 @@
 import { FC, useLayoutEffect, useState } from "react"
 import { Button } from "./ui/Button";
 import { ShoppingBag } from "lucide-react";
+import { useCart } from "@/hooks/use-cart";
+import { useRouter } from "next/navigation";
 
 
 const NavbarAction: FC = () => {
@@ -12,6 +14,9 @@ const NavbarAction: FC = () => {
     setIsMounted(true);
   })
 
+  const cart = useCart();
+  const router = useRouter();
+
   if (!isMounted) return null;
 
   return (
@@ -19,6 +24,7 @@ const NavbarAction: FC = () => {
       className="ml-auto flex items-center gap-x-4"
     >
       <Button
+        onClick={() => router.push("/cart")}
         className="flex items-center rounded-full bg-black px-4 py-2"
       >
         <ShoppingBag
@@ -28,7 +34,7 @@ const NavbarAction: FC = () => {
         <span
           className="ml-2 text-sm font-medium text-white"
         >
-          0
+          { cart.items.length }
         </span>
       </Button>
     </div>
