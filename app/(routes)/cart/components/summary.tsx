@@ -4,13 +4,15 @@ import { postCheckout } from "@/actions/post-checkout";
 import { Button } from "@/components/ui/Button";
 import Currency from "@/components/ui/currency";
 import { useCart } from "@/hooks/use-cart";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { FC, useEffect } from "react";
 import toast from "react-hot-toast";
+import queryString from 'query-string';
 
 
 const Summary: FC = () => {
   const params = useSearchParams();
+  const router = useRouter();
   const items = useCart(state => state.items);
   const removeAll = useCart(state => state.removeAll);
 
@@ -33,7 +35,18 @@ const Summary: FC = () => {
     const extractId = items.map(prod => prod.id);
     const response = await postCheckout(extractId);
 
-    window.location = response.url;
+    const current = queryString.parse(params.toString());
+
+    const query = {
+      ...current,
+      ...response,
+    }
+    const url = queryString.stringifyUrl({
+      url: window.location.href,
+      query,
+    });
+
+    router.push(url)
   }
 
   return (

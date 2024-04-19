@@ -19,11 +19,11 @@ const Currency: FC<CurrencyProps> = (props) => {
   if(!isMounted) return null;
 
   return (
-    <div
+    <span
       className="font-semibold"
     >
       { formatter(Number(values)) }
-    </div>
+    </span>
   )
 }
 
