@@ -72,6 +72,7 @@ const Summary: FC = () => {
       </div>
       <Button
         onClick={onCheckout}
+        disabled={!items.length}
         className="w-full mt-6 text-white"
       >
         Checkout
