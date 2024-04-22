@@ -2,19 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
-/* :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-} */
+@layer base {
+  :root {
+    /* Your default theme */
+    --background: white;
+    --foreground: black;
+    --bg-btn: black;
+    --text-btn: white;
+    --bg-board: rgb(249 250 251 / 1);
+    --text-board: rgb(17 24 39 / 1);
+  }
 
-@media (prefers-color-scheme: dark) {
-  /* :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  } */
+  .dark {
+    --background: black;
+    --foreground: white;
+    --bg-btn: white;
+    --text-btn: black;
+    --bg-board: rgb(45 45 45 / 1);
+    --text-board: rgb(233 233 233 / 1);
+  }
 }
+
 
 html, body, :root {
   height: 100%;
@@ -27,8 +35,8 @@ html, body, :root {
     rgb(var(--background-start-rgb)); */
 }
 
-@layer utilities {
-  /* .text-balance {
+/* @layer utilities {
+  .text-balance {
     text-wrap: balance;
-  } */
-}
+  }
+} */

@@ -39,7 +39,7 @@ const ProductCard: FC<ProductCardProps> = (props) => {
   return (
     <div
       onClick={handleClick}
-      className="bg-white group cursor-pointer rounded-xl border p-3"
+      className="group cursor-pointer rounded-xl border p-3"
     >
       <div
         className="aspect-square rounded-xl bg-gray-100 relative"

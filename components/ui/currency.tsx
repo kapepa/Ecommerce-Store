@@ -1,15 +1,17 @@
 "use client"
 
+import { cn } from "@/lib/utils";
 import { FC, useLayoutEffect, useState } from "react";
 
 interface CurrencyProps {
   values: string | number,
+  className?: string 
 }
 
 const formatter = (number: number) => new Intl.NumberFormat('en-US', { style: "currency", currency: "USD" }).format(number)
 
 const Currency: FC<CurrencyProps> = (props) => {
-  const { values } = props;
+  const { values, className } = props;
   const [ isMounted, setIsMounted ] = useState<boolean>(false);
 
   useLayoutEffect(() => {
@@ -20,7 +22,7 @@ const Currency: FC<CurrencyProps> = (props) => {
 
   return (
     <span
-      className="font-semibold"
+      className={cn("font-semibol", className)}
     >
       { formatter(Number(values)) }
     </span>

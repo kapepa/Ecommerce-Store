@@ -52,7 +52,7 @@ const CartItem: FC<CartItemProps> = (props) => {
             className="flex justify-between"
           >
             <p
-              className="text-lg font-semibold text-black"
+              className="text-lg font-semibold"
             >
               {product.name}
             </p>
