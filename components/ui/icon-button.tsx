@@ -14,7 +14,7 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>((props, ref) =
       ref={ ref }
       className={
         cn(
-          "rounded-full flex items-center justify-center bg-center bg-white border shadow-md p-2 hover:scale-110 transition",
+          "rounded-full flex items-center justify-center bg-center border shadow-md p-2 hover:scale-110 transition",
           className
         )
       }

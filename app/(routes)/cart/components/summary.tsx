@@ -51,10 +51,10 @@ const Summary: FC = () => {
 
   return (
     <div
-      className="mt-16 rounded-lg bg-gray-50 px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8"
+      className="mt-16 rounded-lg bg-bgBoard px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8"
     >
       <h2
-        className="text-lg font-medium text-gray-900"
+        className="text-lg font-medium text-textBoard"
       >
         Order Summary
       </h2>
@@ -62,18 +62,19 @@ const Summary: FC = () => {
         className="flex items-center justify-between border-t border-gray-200 pt-4"
       >
         <div
-          className="text-base font-medium text-gray-900"
+          className="text-base font-medium text-textBoard"
         >
           Order total
         </div>
         <Currency
+          className="text-textBoard"
           values={totalPrice}
         />
       </div>
       <Button
         onClick={onCheckout}
         disabled={!items.length}
-        className="w-full mt-6 text-white"
+        className="w-full mt-6"
       >
         Checkout
       </Button>
