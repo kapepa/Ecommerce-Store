@@ -58,19 +58,21 @@ const ProductCard: FC<ProductCardProps> = (props) => {
           >
             <IconButton
               onClick={onPreview}
+              className="bg-bgBoard"
               icon={
                 <Expand
                   size={20}
-                  className="text-gray-600"
+                  className="text-textBoard"
                 />
               }
             />
             <IconButton
               onClick={onAddToCart}
+              className="bg-bgBoard"
               icon={
                 <ShoppingCart
                   size={20}
-                  className="text-gray-600"
+                  className="text-textBoard"
                 />
               }
             />

@@ -1,5 +1,6 @@
 "use client"
 
+import { PersonalInfoModal } from "@/components/personal-info-modal";
 import { PreviewModal } from "@/components/preview-modal";
 import { useLayoutEffect, useState } from "react"
 
@@ -15,6 +16,7 @@ const ModalProvider = () => {
   return (
     <>
       <PreviewModal/>
+      <PersonalInfoModal/>
     </>
   )
 }
