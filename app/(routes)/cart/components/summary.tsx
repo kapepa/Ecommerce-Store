@@ -8,6 +8,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { FC, useEffect } from "react";
 import toast from "react-hot-toast";
 import queryString from 'query-string';
+import { usePersonalInfoModal } from "@/hooks/use-personal-info-modal";
 
 
 const Summary: FC = () => {
@@ -15,6 +16,9 @@ const Summary: FC = () => {
   const router = useRouter();
   const items = useCart(state => state.items);
   const removeAll = useCart(state => state.removeAll);
+
+  const openPersonalInfo = usePersonalInfoModal(state => state.open);
+  const onOpenPersonalInfo = usePersonalInfoModal(state => state.onOpen);
 
   useEffect(() => {
     if (params.get("success")){
@@ -25,6 +29,7 @@ const Summary: FC = () => {
     if (params.get("canceled")){
       toast.error("Something went wrong.")
     }
+    onOpenPersonalInfo();
   }, [params, removeAll]);
   
   const totalPrice = items.reduce((total, item) => {

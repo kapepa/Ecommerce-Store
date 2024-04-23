@@ -27,14 +27,14 @@ const NavbarAction: FC = () => {
       <SwitcherThemes/>
       <Button
         onClick={() => router.push("/cart")}
-        className="flex items-center rounded-full bg-black px-4 py-2"
+        className="flex items-center rounded-full bg-bgBtn px-4 py-2"
       >
         <ShoppingBag
           size={20}
-          color="white"
+          className="text-textBtn"
         />
         <span
-          className="ml-2 text-sm font-medium text-white"
+          className="ml-2 text-sm font-medium text-textBtn"
         >
           { cart.items.length }
         </span>

@@ -5,7 +5,7 @@ import { ButtonHTMLAttributes, FC, ReactNode, forwardRef } from "react";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode,
-  className: string
+  className?: string
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {

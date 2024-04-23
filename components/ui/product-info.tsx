@@ -18,7 +18,7 @@ const ProductInfo: FC<ProductInfoProps> = (props) => {
   return (
     <div>
       <h1
-        className="text-3xl font-bold text-gray-900"
+        className="text-3xl font-bold text-secondary"
       >
         {product.name}
       </h1>
@@ -26,7 +26,7 @@ const ProductInfo: FC<ProductInfoProps> = (props) => {
         className="mt-3 flex items-end justify-between"
       >
         <p
-          className="text-2xl text-gray-900"
+          className="text-2xl text-secondary"
         >
           <Currency 
             values={product.price}
@@ -43,7 +43,7 @@ const ProductInfo: FC<ProductInfoProps> = (props) => {
           className="flex items-center gap-x-4"
         >
           <h3
-            className="font-semibold text-black"
+            className="font-semibold text-background"
           >
             Size:
           </h3>
@@ -55,7 +55,7 @@ const ProductInfo: FC<ProductInfoProps> = (props) => {
           className="flex items-center gap-x-4"
         >
           <h3
-            className="font-semibold text-black"
+            className="font-semibold text-background"
           >
             Color:
           </h3>
@@ -68,7 +68,7 @@ const ProductInfo: FC<ProductInfoProps> = (props) => {
           className="mt-10 flex items-center gap-x-3"
         >
           <Button
-            className="flex items-center gap-x-2 text-white"
+            className="flex items-center gap-x-2"
           >
             <ShoppingCart/>
             Add to Cart
