@@ -5,6 +5,7 @@ import { PersonalInfoForm } from "./personal-info-form";
 
 const PersonalInfoModal: FC = () => {
   const open = usePersonalInfoModal(state => state.open);
+  const getInfo = usePersonalInfoModal(state => state.info);
   const onClose = usePersonalInfoModal(state => state.onClose);
 
   return (
@@ -27,7 +28,9 @@ const PersonalInfoModal: FC = () => {
         <div
           className="flex justify-center"
         > 
-          <PersonalInfoForm />
+          <PersonalInfoForm 
+            initial={getInfo}
+          />
         </div>
       </div>
     </Modal>
