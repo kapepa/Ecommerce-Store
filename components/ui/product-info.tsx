@@ -18,7 +18,7 @@ const ProductInfo: FC<ProductInfoProps> = (props) => {
   return (
     <div>
       <h1
-        className="text-3xl font-bold text-secondary"
+        className="text-3xl font-bold text-background"
       >
         {product.name}
       </h1>
@@ -26,7 +26,7 @@ const ProductInfo: FC<ProductInfoProps> = (props) => {
         className="mt-3 flex items-end justify-between"
       >
         <p
-          className="text-2xl text-secondary"
+          className="text-2xl text-background"
         >
           <Currency 
             values={product.price}

@@ -17,37 +17,33 @@ const ProductIdPage: NextPage<ProductIdPageProps> = async (props) => {
   const suggestedProducts = await getProducts({ categoryId: product?.category.id });
 
   return (
-    <div
-      className="bg-white"
-    >
-      <Container>
+    <Container>
+      <div
+        className="px-4 py-10 sm:px-6 lg:px-8"
+      >
         <div
-          className="px-4 py-10 sm:px-6 lg:px-8"
+          className="lg:grid lg:grid-cols-2 lg: items-start lg: gap-x-8"
         >
+          <Gallery
+            images={product?.image}
+          />
           <div
-            className="lg:grid lg:grid-cols-2 lg: items-start lg: gap-x-8"
+            className="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0"
           >
-            <Gallery
-              images={product?.image}
+            <ProductInfo
+              product={product}
             />
-            <div
-              className="mt-10 px-4 sm:mt-16 sm:px-0 lg:mt-0"
-            >
-              <ProductInfo
-                product={product}
-              />
-            </div>
           </div>
-          <hr
-            className="my-10"
-          />
-          <ProductsList
-            title="Related Items"
-            products={suggestedProducts}
-          />
         </div>
-      </Container>
-    </div>
+        <hr
+          className="my-10"
+        />
+        <ProductsList
+          title="Related Items"
+          products={suggestedProducts}
+        />
+      </div>
+    </Container>
   )
 }
 
