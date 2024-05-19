@@ -28,7 +28,7 @@ const CategoryIdPage: NextPage<CategoryIdPageProps> = async (props) => {
     categoryId: params.categoryId,
     colorId: searchParams.colorId,
     sizeId: searchParams.sizeId, 
-  })
+  });
   const sizes = await getSizes();
   const colors = await getColors();
   const caregory = await getCategoryById(params.categoryId);
