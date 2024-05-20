@@ -32,7 +32,7 @@ export default function RootLayout({
         >
           <ModalProvider/>
           <ToastProvider/>
-          <Navbar/>
+          {/* <Navbar/> */}
             {children}
           <Footer/>
         </ThemeProvider>
