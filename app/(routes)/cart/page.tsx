@@ -1,4 +1,4 @@
-"use client"
+// "use client"
 
 import { Container } from "@/components/ui/container";
 // import { useCart } from "@/hooks/use-cart";
@@ -6,6 +6,7 @@ import { NextPage } from "next";
 // import { useLayoutEffect, useState } from "react";
 // import { CartItem } from "./components/cart-item";
 import { Summary } from "./components/summary";
+
 
 const CartPage: NextPage = () => {
   // const [isMounted, setIsMounted] = useState<boolean>(false);
@@ -46,8 +47,8 @@ const CartPage: NextPage = () => {
                   />
                 ))}
               </ul>
-            // </div> */}
-            // <Summary/>
+            </div>
+            <Summary/> */}
           </div>
         </div>
       </Container>
