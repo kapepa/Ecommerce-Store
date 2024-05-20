@@ -8,6 +8,8 @@ interface BillboardProps {
 const Billboard: FC<BillboardProps> = (props) => {
   const { data } = props;
 
+  if (!data) return null;
+
   return (
     <div
       className="p-4 sm:p-6 lg:p-8 rounded-xl overflow-hidden"
