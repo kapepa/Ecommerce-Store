@@ -26,9 +26,11 @@ const Navbar: FC = async () => {
               Store
             </p>
           </Link>
-          <MainNav
-            data={gcategories}
-          />
+          { !!gcategories && (
+            <MainNav
+              data={gcategories}
+            />
+          )}
           <NavbarAction/>
         </div>
       </Container>
