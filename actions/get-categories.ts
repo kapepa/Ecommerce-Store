@@ -4,7 +4,9 @@ const url = `${process.env.NEXT_PUBLIC_API_URL}/category`;
 
 const getCategories = async (): Promise<CategoryInt[]> => {
   try {
-    const res = await fetch(url);
+    const res = await fetch(url, { method: "GET" });
+
+    if (!res.json) return []
 
     return res.json();
   } catch (error) {
