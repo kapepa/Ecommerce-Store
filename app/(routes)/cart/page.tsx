@@ -1,22 +1,22 @@
-// "use client"
+"use client"
 
 import { Container } from "@/components/ui/container";
-// import { useCart } from "@/hooks/use-cart";
+import { useCart } from "@/hooks/use-cart";
 import { NextPage } from "next";
-// import { useLayoutEffect, useState } from "react";
-// import { CartItem } from "./components/cart-item";
+import { useEffect, useState } from "react";
+import { CartItem } from "./components/cart-item";
 import { Summary } from "./components/summary";
 
 
 const CartPage: NextPage = () => {
-  // const [isMounted, setIsMounted] = useState<boolean>(false);
-  // const cart = useCart();
+  const [isMounted, setIsMounted] = useState<boolean>(false);
+  const cart = useCart();
 
-  // useLayoutEffect(() => {
-  //   if(!isMounted) setIsMounted(true);
-  // },[isMounted, setIsMounted])
+  useEffect(() => {
+    if(!isMounted) setIsMounted(true);
+  },[isMounted, setIsMounted])
 
-  // if (!isMounted) return null;
+  if (!isMounted) return null;
 
   return (
     <div>
@@ -32,7 +32,7 @@ const CartPage: NextPage = () => {
           <div
             className="mt-12 lg:grid lg: grid-cols-12 lg: items-start gap-x-12"
           >
-            {/* <div
+            <div
               className="lg:col-span-7"
             >
               {
@@ -40,7 +40,7 @@ const CartPage: NextPage = () => {
                 && <p className="text-neutral-500">No items added to cart.</p>
               }
               <ul>
-                {cart.items.map((product, index) => (
+                {cart.items.length > 0 && cart.items.map((product, index) => (
                   <CartItem
                     key={`${product.id}-${index}`}
                     product={product}
@@ -48,7 +48,7 @@ const CartPage: NextPage = () => {
                 ))}
               </ul>
             </div>
-            <Summary/> */}
+            <Summary/>
           </div>
         </div>
       </Container>
