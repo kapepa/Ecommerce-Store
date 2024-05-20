@@ -6,6 +6,8 @@ const getCategories = async (): Promise<CategoryInt[]> => {
   try {
     const res = await fetch(url, { method: "GET" });
 
+    if (res.status !== 200) return []
+
     return res.json();
   } catch (error) {
     return []
