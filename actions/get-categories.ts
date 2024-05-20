@@ -2,11 +2,13 @@ import { CategoryInt } from "@/interface/category";
 
 const url = `${process.env.NEXT_PUBLIC_API_URL}/category`;
 
-const getCategories = async (): Promise<CategoryInt[]> => {
+const getCategories = async (): Promise<CategoryInt[] | any> => {
   try {
-    const res = await fetch(url, { method: "GET" });
+    // const res = await fetch(url, { method: "GET" });
 
-    return res.json() ?? [];
+    // return res.json();
+
+    return []
   } catch (error) {
     return []
   }
