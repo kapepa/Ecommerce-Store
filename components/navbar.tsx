@@ -6,7 +6,7 @@ import { getCategories } from "@/actions/get-categories";
 import { NavbarAction } from "./navbar-action";
 
 const Navbar: FC = async () => {
-  const gcategories = await getCategories();
+  // const gcategories = await getCategories();
 
   return (
     <div
@@ -26,10 +26,12 @@ const Navbar: FC = async () => {
               Store
             </p>
           </Link>
-          <MainNav
-            data={gcategories}
-          />
-          <NavbarAction/>
+          {/* { !!gcategories && (
+            <MainNav
+              data={gcategories}
+            />
+          )}
+          <NavbarAction/> */}
         </div>
       </Container>
     </div>
