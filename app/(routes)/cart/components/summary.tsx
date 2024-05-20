@@ -1,24 +1,24 @@
 "use client"
 
-import { postCheckout } from "@/actions/post-checkout";
 import { Button } from "@/components/ui/Button";
 import Currency from "@/components/ui/currency";
 import { useCart } from "@/hooks/use-cart";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { FC, useEffect } from "react";
 import toast from "react-hot-toast";
-import queryString from 'query-string';
 import { usePersonalInfoModal } from "@/hooks/use-personal-info-modal";
+import { useOrderModal } from "@/hooks/use-order-modal";
 
 
 const Summary: FC = () => {
   const params = useSearchParams();
-  const router = useRouter();
   const items = useCart(state => state.items);
   const removeAll = useCart(state => state.removeAll);
 
-  const openPersonalInfo = usePersonalInfoModal(state => state.open);
+  const getInfo = usePersonalInfoModal(state => state.info);
   const onOpenPersonalInfo = usePersonalInfoModal(state => state.onOpen);
+
+  const openOrder = useOrderModal(state => state.onOpen);
 
   useEffect(() => {
     if (params.get("success")){
@@ -29,7 +29,6 @@ const Summary: FC = () => {
     if (params.get("canceled")){
       toast.error("Something went wrong.")
     }
-    onOpenPersonalInfo();
   }, [params, removeAll]);
   
   const totalPrice = items.reduce((total, item) => {
@@ -37,21 +36,8 @@ const Summary: FC = () => {
   }, 0);
 
   const onCheckout = async () => {
-    const extractId = items.map(prod => prod.id);
-    const response = await postCheckout(extractId);
-
-    const current = queryString.parse(params.toString());
-
-    const query = {
-      ...current,
-      ...response,
-    }
-    const url = queryString.stringifyUrl({
-      url: window.location.href,
-      query,
-    });
-
-    router.push(url)
+    if(!getInfo || !getInfo.name || !getInfo.phone || !getInfo.address) return onOpenPersonalInfo();
+    openOrder();
   }
 
   return (

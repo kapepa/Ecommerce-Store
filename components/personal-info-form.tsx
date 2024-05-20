@@ -3,7 +3,7 @@
 import { UserType, usePersonalInfoModal } from "@/hooks/use-personal-info-modal";
 import { PersonalInfoSchema } from "@/schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { FC, useLayoutEffect, useState } from "react";
+import { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "./ui/form";
@@ -11,16 +11,18 @@ import { Input } from "./ui/input";
 import { Button } from "./ui/Button";
 import { Separator } from "./ui/separator";
 import { InputPhone } from "./ui/input-phone";
+import { useOrderModal } from "@/hooks/use-order-modal";
 
-const PersonalInfoForm: FC = () => {
-  const getInfo = usePersonalInfoModal(state => state.info);
+interface PersonalInfoFormprops {
+  initial: UserType | undefined
+}
+
+const PersonalInfoForm: FC<PersonalInfoFormprops> = (props) => {
+  const { initial } = props;
   const setInfo = usePersonalInfoModal(state => state.setInfo);
-  const [initial, setInitial] = useState<UserType | undefined>(undefined)
-
-  useLayoutEffect(() => {
-    setInitial(getInfo)
-  },[])
-
+  const setInfoClose = usePersonalInfoModal(state => state.onClose);
+  const onOrderOpen = useOrderModal(state => state.onOpen);
+  
   const form = useForm<z.infer<typeof PersonalInfoSchema>>({
     resolver: zodResolver(PersonalInfoSchema),
     defaultValues: initial || {
@@ -32,7 +34,8 @@ const PersonalInfoForm: FC = () => {
 
   function onSubmit(values: z.infer<typeof PersonalInfoSchema>) {
     setInfo(values);
-    
+    setInfoClose();
+    onOrderOpen();
   }
 
   return (
@@ -56,7 +59,7 @@ const PersonalInfoForm: FC = () => {
                       {...field} 
                       placeholder="Your name" 
                       onChange={(e) => {
-                        setInfo({ name: field.value });
+                        setInfo({ name: e.target.value });
                         field.onChange(e)
                       }}
                     />
@@ -78,7 +81,7 @@ const PersonalInfoForm: FC = () => {
                       placeholder="Your phone" 
                       defaultValue={field.value}
                       onChange={(e) => {
-                        setInfo({ phone: field.value });
+                        setInfo({ phone: e.target.value });
                         field.onChange(e)
                       }}
                     />
@@ -100,7 +103,7 @@ const PersonalInfoForm: FC = () => {
                       {...field} 
                       placeholder="Your address" 
                       onChange={(e) => {
-                        setInfo({ address: field.value });
+                        setInfo({ address: e.target.value });
                         field.onChange(e)
                       }}
                     />
@@ -118,7 +121,7 @@ const PersonalInfoForm: FC = () => {
           <Button 
             type="submit"
             className="px-10 py-4"
-          >Send</Button>
+          >Apply</Button>
         </div>
       </form>
     </Form>

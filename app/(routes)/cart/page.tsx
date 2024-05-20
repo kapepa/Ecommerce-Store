@@ -3,17 +3,18 @@
 import { Container } from "@/components/ui/container";
 import { useCart } from "@/hooks/use-cart";
 import { NextPage } from "next";
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { CartItem } from "./components/cart-item";
 import { Summary } from "./components/summary";
+
 
 const CartPage: NextPage = () => {
   const [isMounted, setIsMounted] = useState<boolean>(false);
   const cart = useCart();
 
-  useLayoutEffect(() => {
-    setIsMounted(true);
-  })
+  useEffect(() => {
+    if(!isMounted) setIsMounted(true);
+  },[isMounted, setIsMounted])
 
   if (!isMounted) return null;
 
@@ -39,7 +40,7 @@ const CartPage: NextPage = () => {
                 && <p className="text-neutral-500">No items added to cart.</p>
               }
               <ul>
-                {cart.items.map((product, index) => (
+                {cart.items.length > 0 && cart.items.map((product, index) => (
                   <CartItem
                     key={`${product.id}-${index}`}
                     product={product}
