@@ -9,7 +9,7 @@ import { Summary } from "./components/summary";
 
 const CartPage: NextPage = () => {
   const [isMounted, setIsMounted] = useState<boolean>(false);
-  const cart = useCart();
+  // const cart = useCart();
 
   useLayoutEffect(() => {
     if(!isMounted) setIsMounted(true);
@@ -31,7 +31,7 @@ const CartPage: NextPage = () => {
           <div
             className="mt-12 lg:grid lg: grid-cols-12 lg: items-start gap-x-12"
           >
-            <div
+            {/* <div
               className="lg:col-span-7"
             >
               {
@@ -46,7 +46,7 @@ const CartPage: NextPage = () => {
                   />
                 ))}
               </ul>
-            </div>
+            </div> */}
             <Summary/>
           </div>
         </div>
