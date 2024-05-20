@@ -16,7 +16,7 @@ const Currency: FC<CurrencyProps> = (props) => {
 
   useLayoutEffect(() => {
     setIsMounted(true);
-  })
+  }, [setIsMounted])
 
   if(!isMounted) return null;
 

@@ -12,8 +12,8 @@ const CartPage: NextPage = () => {
   const cart = useCart();
 
   useLayoutEffect(() => {
-    setIsMounted(true);
-  })
+    if(!isMounted) setIsMounted(true);
+  },[isMounted, setIsMounted])
 
   if (!isMounted) return null;
 

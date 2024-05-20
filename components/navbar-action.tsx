@@ -13,7 +13,7 @@ const NavbarAction: FC = () => {
   
   useLayoutEffect(() => {
     setIsMounted(true);
-  })
+  }, [setIsMounted])
 
   const cart = useCart();
   const router = useRouter();
