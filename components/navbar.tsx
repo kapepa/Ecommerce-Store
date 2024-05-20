@@ -30,8 +30,8 @@ const Navbar: FC = async () => {
             <MainNav
               data={gcategories}
             />
-          )}
-          <NavbarAction/> */}
+          )} */}
+          <NavbarAction/>
         </div>
       </Container>
     </div>
