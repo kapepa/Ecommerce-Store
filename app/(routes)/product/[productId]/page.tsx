@@ -3,12 +3,21 @@ import { Gallery } from "@/components/gallery";
 import { ProductsList } from "@/components/products-list";
 import { Container } from "@/components/ui/container";
 import { ProductInfo } from "@/components/ui/product-info";
-import { NextPage } from "next";
+import { NextPage, Metadata } from "next";
 
 interface ProductIdPageProps {
   params: { 
     productId: string
   }
+}
+
+export async function generateMetadata({ params }: ProductIdPageProps): Promise<Metadata> {
+  const product = await getOneProductById(params.productId);
+
+  return {
+    title: product?.name,
+    description: product?.meta,
+  };
 }
 
 const ProductIdPage: NextPage<ProductIdPageProps> = async (props) => {

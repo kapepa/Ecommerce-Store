@@ -33,7 +33,7 @@ const getProducts = async (query: QueryProductsProps): Promise<ProductInt[] | []
 
 const getOneProductById = async (id: string): Promise<ProductInt | null> => {
   try {
-    const res = await fetch(`${url}/${id}`);
+    const res = await fetch(`${url}/${id}`, { cache: 'no-store' });
 
     return res.json();
   } catch (error) {
