@@ -65,6 +65,11 @@ const ProductInfo: FC<ProductInfoProps> = (props) => {
           />
         </div>
         <div
+           className="flex items-center gap-x-4"
+        >
+          <p>{product.description}</p>
+        </div>
+        <div
           className="mt-10 flex items-center gap-x-3"
         >
           <Button
