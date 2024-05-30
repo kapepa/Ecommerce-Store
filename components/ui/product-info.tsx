@@ -5,6 +5,7 @@ import { FC } from "react"
 import Currency from "./currency";
 import { Button } from "./Button";
 import { ShoppingCart } from "lucide-react";
+import { BoardColor } from "../board-color";
 
 interface ProductInfoProps {
   product: ProductInt | null,
@@ -59,9 +60,8 @@ const ProductInfo: FC<ProductInfoProps> = (props) => {
           >
             Color:
           </h3>
-          <div
-            className="h-6 w-6 rounded-full border border-gray-600"
-            style={{ backgroundColor: product.color.value }}
+          <BoardColor
+            url={product.color.url}
           />
         </div>
         <div
