@@ -12,7 +12,6 @@ interface GalleryTabProps {
 
 const GalleryTab: FC<GalleryTabProps> = (props) => {
   const { image } = props;
-  console.log(image.url)
 
   return (
     <Tab
@@ -28,6 +27,8 @@ const GalleryTab: FC<GalleryTabProps> = (props) => {
               src={image.url}
               alt=""
               className="object-cover object-center"
+              priority={false}
+              sizes="(max-width: 768px) auto"
             />
           </span>
           <span
