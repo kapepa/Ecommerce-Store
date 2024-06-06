@@ -49,6 +49,8 @@ const Gallery: FC<GalleryProps> = (props) => {
                 src={image.url}
                 alt="image"
                 className="object-cover object-center"
+                priority={false}
+                sizes="(max-width: 768px) auto"
               />
             </div>
           </Tab.Panel>

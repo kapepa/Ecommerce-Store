@@ -8,7 +8,7 @@ interface CurrencyProps {
   className?: string 
 }
 
-const formatter = (number: number) => new Intl.NumberFormat('en-US', { style: "currency", currency: "USD" }).format(number)
+const formatter = (number: number) => new Intl.NumberFormat("uk-UA", { style: 'currency', currency: 'UAH' }).format(number)
 
 const Currency: FC<CurrencyProps> = (props) => {
   const { values, className } = props;
