@@ -28,9 +28,9 @@ const Summary: FC = () => {
     }
 
     if (params.get("canceled")){
-      toast.error("SomethingWentWrong")
+      toast.error(t("SomethingWentWrong"))
     }
-  }, [params, removeAll]);
+  }, [t, params, removeAll]);
   
   const totalPrice = items.reduce((total, item) => {
     return total + Number(item.price);
