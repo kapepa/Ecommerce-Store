@@ -3,7 +3,7 @@
 import { CategoryInt } from "@/interface/category";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import { FC } from "react";
 
 interface MainNavProps {
@@ -12,12 +12,13 @@ interface MainNavProps {
 
 const MainNav: FC<MainNavProps> = (props) => {
   const { data } = props;
+  const { locale } = useParams();
   const pathname = usePathname();
 
   const routes = data.map(route => ({
-    href: `/category/${route.id}`,
+    href: `/${locale}/category/${route.id}`,
     label: route.name,
-    active: pathname === `/category/${route.id}`,
+    active: pathname === `/${locale}/category/${route.id}`,
   }))
 
   return (

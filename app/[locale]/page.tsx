@@ -4,12 +4,19 @@ import { Billboard } from "@/components/billboard";
 import { ProductsList } from "@/components/products-list";
 import { Container } from "@/components/ui/container";
 import { NextPage } from "next";
+import { getTranslations } from "next-intl/server";
 
 export const revalidate = 0
 
-const HomePage: NextPage = async () => {
+interface NextPageProps {
+  params: { locale: string }
+}
+
+const HomePage: NextPage<NextPageProps> = async (props) => {
+  const { params: { locale } } = props;
   const products = await getProducts({ isFeatured: true });
-  const billboard = await getBillboard()
+  const billboard = await getBillboard();
+  const t = await getTranslations('Home');
   
   return (
     <Container>
@@ -23,7 +30,8 @@ const HomePage: NextPage = async () => {
           className="flex flex-col gap-y-8 sm:px-6 lg:px-8"
         >
           <ProductsList
-            title={"Featured Products"}
+            title={t("FeaturedProducts")}
+            locale={locale}
             products={products}
           />
         </div>

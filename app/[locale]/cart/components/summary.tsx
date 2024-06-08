@@ -8,9 +8,10 @@ import { FC, useEffect } from "react";
 import toast from "react-hot-toast";
 import { usePersonalInfoModal } from "@/hooks/use-personal-info-modal";
 import { useOrderModal } from "@/hooks/use-order-modal";
-
+import { useTranslations } from "next-intl";
 
 const Summary: FC = () => {
+  const t = useTranslations('Cart');
   const params = useSearchParams();
   const items = useCart(state => state.items);
   const removeAll = useCart(state => state.removeAll);
@@ -22,14 +23,14 @@ const Summary: FC = () => {
 
   useEffect(() => {
     if (params.get("success")){
-      toast.success("Order completed");
+      toast.success(t("OrderCompleted"));
       removeAll();
     }
 
     if (params.get("canceled")){
-      toast.error("Something went wrong.")
+      toast.error(t("SomethingWentWrong"))
     }
-  }, [params, removeAll]);
+  }, [t, params, removeAll]);
   
   const totalPrice = items.reduce((total, item) => {
     return total + Number(item.price);
@@ -47,7 +48,7 @@ const Summary: FC = () => {
       <h2
         className="text-lg font-medium text-textBoard"
       >
-        Order Summary
+        { t("OrderSummary") }
       </h2>
       <div
         className="flex items-center justify-between border-t border-gray-200 pt-4"
@@ -55,7 +56,7 @@ const Summary: FC = () => {
         <div
           className="text-base font-medium text-textBoard"
         >
-          Order total
+          { t("OrderTotal") }
         </div>
         <Currency
           className="text-textBoard"
@@ -67,7 +68,7 @@ const Summary: FC = () => {
         disabled={!items.length}
         className="w-full mt-6"
       >
-        Checkout
+        { t("Checkout") }
       </Button>
     </div>
   )

@@ -6,11 +6,13 @@ import { NextPage } from "next";
 import { useEffect, useState } from "react";
 import { CartItem } from "./components/cart-item";
 import { Summary } from "./components/summary";
+import { useTranslations } from "next-intl";
 
 
 const CartPage: NextPage = () => {
-  const [isMounted, setIsMounted] = useState<boolean>(false);
   const cart = useCart();
+  const t = useTranslations('Cart');
+  const [isMounted, setIsMounted] = useState<boolean>(false);
 
   useEffect(() => {
     if(!isMounted) setIsMounted(true);
@@ -27,7 +29,7 @@ const CartPage: NextPage = () => {
           <h1
             className="text-3xl font-bold"
           >
-            Shopping Cart
+            {t("ShoppingCart")}
           </h1>
           <div
             className="mt-12 lg:grid lg: grid-cols-12 lg: items-start gap-x-12"
@@ -36,8 +38,11 @@ const CartPage: NextPage = () => {
               className="lg:col-span-7"
             >
               {
-                cart.items.length === 0
-                && <p className="text-neutral-500">No items added to cart.</p>
+                cart.items.length === 0 && (
+                  <p className="text-neutral-500">
+                    {t("NoItemsAddedToCart")}
+                  </p>
+                )
               }
               <ul>
                 {cart.items.length > 0 && cart.items.map((product, index) => (

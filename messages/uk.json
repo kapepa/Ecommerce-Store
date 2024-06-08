@@ -1,0 +1,27 @@
+{
+  "Home": {
+    "FeaturedProducts": "Популярні товари"
+  },
+  "Cart": {
+    "Checkout": "Оформити замовлення",
+    "ShoppingCart": "Кошик",
+    "OrderTotal": "Загальна сума замовлення",
+    "OrderSummary": "Короткий зміст замовлення",
+    "OrderCompleted": "Замовлення виконано",
+    "SomethingWentWrong": "Щось пішло не так",
+    "NoItemsAddedToCart": "Немає товарів, доданих до кошика"
+  },
+  "Category": {
+    "Sizes": "Розміри",
+    "Colors": "Кольори"
+  },
+  "Product": {
+    "Size": "Розмір",
+    "Color": "Кольор",
+    "AddToCart": "Додати до кошику",
+    "RelatedItems": "Схожі товари"
+  },
+  "Footer": {
+    "AllRightsReserved": "2023 Store. Всі права захищені."
+  }
+}

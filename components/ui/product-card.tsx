@@ -12,16 +12,17 @@ import { useCart } from "@/hooks/use-cart";
 
 interface ProductCardProps {
   product: ProductInt,
+  locale: string,
 }
 
 const ProductCard: FC<ProductCardProps> = (props) => {
-  const { product } = props;
+  const { product, locale } = props;
   const router = useRouter();
   const preview = usePreviewModal();
   const cart = useCart();
 
   const handleClick = () => {
-    router.push(`/product/${product.id}`);
+    router.push(`/${locale}/product/${product.id}`);
   }
 
   const onPreview = (e: MouseEvent<HTMLButtonElement>) => {
@@ -49,6 +50,7 @@ const ProductCard: FC<ProductCardProps> = (props) => {
           fill
           alt="image"
           className="aspect-square object-cover rounded-md"
+          sizes="(max-width: 768px) auto, (max-width: 1200px) auto"
         />
         <div 
           className="opacity-0 group-hover:opacity-100 transition absolute w-full px-6 bottom-5"

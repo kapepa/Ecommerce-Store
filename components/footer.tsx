@@ -1,6 +1,9 @@
+import { useTranslations } from "next-intl";
 import { FC } from "react";
 
 const Footer: FC = () => {
+  const t = useTranslations('Footer');
+
   return (
     <div
       className="border-t"
@@ -11,7 +14,7 @@ const Footer: FC = () => {
         <p
           className="text-center text-x"
         >
-          &copy; 2023 StoreName, Inc. All right reserved.
+          &copy; { t("AllRightsReserved") } 
         </p>
       </div>
     </div>

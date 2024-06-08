@@ -4,10 +4,12 @@ import { ProductsList } from "@/components/products-list";
 import { Container } from "@/components/ui/container";
 import { ProductInfo } from "@/components/ui/product-info";
 import { NextPage, Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 
 interface ProductIdPageProps {
   params: { 
-    productId: string
+    locale: string
+    productId: string,
   }
 }
 
@@ -24,6 +26,7 @@ const ProductIdPage: NextPage<ProductIdPageProps> = async (props) => {
   const { params } = props;
   const product = await getOneProductById(params.productId);
   const suggestedProducts = await getProducts({ categoryId: product?.category.id });
+  const t = await getTranslations("Product");
 
   return (
     <Container>
@@ -48,7 +51,8 @@ const ProductIdPage: NextPage<ProductIdPageProps> = async (props) => {
           className="my-10"
         />
         <ProductsList
-          title="Related Items"
+          title={t("RelatedItems")}
+          locale={params.locale}
           products={suggestedProducts}
         />
       </div>
