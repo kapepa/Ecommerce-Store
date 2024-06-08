@@ -14,16 +14,16 @@ interface NextPageProps {
 
 const HomePage: NextPage<NextPageProps> = async (props) => {
   const { params: { locale } } = props;
-  const products = await getProducts({ isFeatured: true });
-  const billboard = await getBillboard();
-  const t = await getTranslations('Home');
+  // const products = await getProducts({ isFeatured: true });
+  // const billboard = await getBillboard();
+  // const t = await getTranslations('Home');
   
   return (
     <Container>
       <div 
         className="space-y-10 pb-10"
-      >
-        <Billboard
+      >Test
+        {/* <Billboard
           data={billboard}
         />
         <div
@@ -34,7 +34,7 @@ const HomePage: NextPage<NextPageProps> = async (props) => {
             locale={locale}
             products={products}
           />
-        </div>
+        </div> */}
       </div>
     </Container>
   )
