@@ -12,7 +12,7 @@ enum LocaleTranslation {
 type LocaleType = `${LocaleTranslation}`
 
 interface LocaleSwitchProps {
-  locale: string,
+  locale: string | string[],
 }
 
 const LocaleSwitch: FC<LocaleSwitchProps> = (props) => {
