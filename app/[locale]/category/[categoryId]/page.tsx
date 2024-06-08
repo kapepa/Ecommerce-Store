@@ -9,11 +9,13 @@ import { Filter } from "./components/filter";
 import { NoResults } from "@/components/ui/no-results";
 import { ProductCard } from "@/components/ui/product-card";
 import { MobileFilter } from "./components/mobile-filter";
+import { getTranslations } from "next-intl/server";
 
 export const revalidate = 0;
 
 interface CategoryIdPageProps {
   params: { 
+    locale: string
     categoryId: string 
   },
   searchParams: {
@@ -29,14 +31,15 @@ const CategoryIdPage: NextPage<CategoryIdPageProps> = async (props) => {
     colorId: searchParams.colorId,
     sizeId: searchParams.sizeId, 
   });
-  const sizes = await getSizes();
-  const colors = await getColors();
-  const caregory = await getCategoryById(params.categoryId);
+  const sizes = await getSizes(params.categoryId);
+  const colors = await getColors(params.categoryId);
+  const category = await getCategoryById(params.categoryId);
+  const t = await getTranslations('Category');
   
   return (
     <Container>
       <Billboard
-        data={caregory?.billboard}
+        data={category?.billboard}
       />
       <div
         className="px-4 sm:px-6 lg:px-8 pb-24"
@@ -53,12 +56,12 @@ const CategoryIdPage: NextPage<CategoryIdPageProps> = async (props) => {
           >
             <Filter
               valueKey="sizeId"
-              name="Sizes"
+              name={t("Sizes")}
               data={sizes ?? []}
             />
             <Filter
               valueKey="colorId"
-              name="Colors"
+              name={t("Colors")}
               data={colors ?? []}
             />
           </div>
@@ -72,6 +75,7 @@ const CategoryIdPage: NextPage<CategoryIdPageProps> = async (props) => {
               {products.map((product, index) => (
                 <ProductCard
                   key={`${product.id}-${index}`}
+                  locale={params.locale}
                   product={product}
                 />
               ))}

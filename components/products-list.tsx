@@ -2,14 +2,16 @@ import { ProductInt } from "@/interface/product";
 import { FC } from "react";
 import { NoResults } from "./ui/no-results";
 import { ProductCard } from "./ui/product-card";
+import { useParams } from "next/navigation";
 
 interface ProductsListProps {
   title: string,
+  locale: string,
   products: ProductInt[] | [],
 }
 
 const ProductsList: FC<ProductsListProps> = (props) => {
-  const { title, products } = props;
+  const { title, products, locale } = props;
 
   return (
     <div
@@ -28,6 +30,7 @@ const ProductsList: FC<ProductsListProps> = (props) => {
             { products.map((product, index) => (
               <ProductCard
                 key={`${product.id}-${index}`}
+                locale={locale}
                 product={product}
               />
             )) }

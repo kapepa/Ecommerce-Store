@@ -50,7 +50,7 @@ const Gallery: FC<GalleryProps> = (props) => {
                 alt="image"
                 className="object-cover object-center"
                 priority={false}
-                sizes="(max-width: 768px) auto"
+                sizes="(max-width: 768px) auto, (max-width: 1200px) auto"
               />
             </div>
           </Tab.Panel>

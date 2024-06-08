@@ -4,13 +4,14 @@ import { FC, useLayoutEffect, useState } from "react"
 import { Button } from "./ui/Button";
 import { ShoppingBag } from "lucide-react";
 import { useCart } from "@/hooks/use-cart";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { SwitcherThemes } from "./switcher-themes";
-
+import { LocaleSwitch } from "./locale-switcher";
 
 const NavbarAction: FC = () => {
+  const { locale } = useParams();
   const [isMounted, setIsMounted] = useState<boolean>(false);
-  
+
   useLayoutEffect(() => {
     setIsMounted(true);
   }, [setIsMounted])
@@ -25,8 +26,11 @@ const NavbarAction: FC = () => {
       className="ml-auto flex items-center gap-x-4"
     >
       <SwitcherThemes/>
+      <LocaleSwitch
+        locale={locale}
+      />
       <Button
-        onClick={() => router.push("/cart")}
+        onClick={() => router.push(`/${locale}/cart`)}
         className="flex items-center rounded-full bg-bgBtn px-4 py-2"
       >
         <ShoppingBag

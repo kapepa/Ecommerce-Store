@@ -1,0 +1,27 @@
+{
+  "Home": {
+    "FeaturedProducts": "Популярные товары"
+  },
+  "Cart": {
+    "Checkout": "Оформить заказ",
+    "ShoppingCart": "Корзина",
+    "OrderTotal": "Общая сумма заказа",
+    "OrderSummary": "Краткое содержание заказа",
+    "OrderCompleted": "Заказ выполнен",
+    "SomethingWentWrong": "Что-то пошло не так",
+    "NoItemsAddedToCart": "Нет товаров, добавленных в корзину"
+  },
+  "Category": {
+    "Sizes": "Размеры",
+    "Colors": "Цвета"
+  },
+  "Product": {
+    "Size": "Размер",
+    "Color": "Цвета",
+    "AddToCart": "Добавить в корзину",
+    "RelatedItems": "Похожие товары"
+  },
+  "Footer": {
+    "AllRightsReserved": "2023 Store. Все права защищены."
+  }
+}

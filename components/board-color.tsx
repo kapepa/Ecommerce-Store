@@ -25,6 +25,8 @@ const BoardColor: FC<BoardColorProps> = (props) => {
               fill
               src={url}
               alt="color"
+              priority={false}
+              sizes="(max-width: 768px) auto, (max-width: 1200px) auto"
               className="border object-cover rounded-full"
             />
           </div>
@@ -38,6 +40,8 @@ const BoardColor: FC<BoardColorProps> = (props) => {
             fill
             src={url}
             alt="color"
+            priority={false}
+            sizes="(max-width: 768px) auto, (max-width: 1200px) auto"
             className="border object-cover rounded-sm"
           />
         </div>

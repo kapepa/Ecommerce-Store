@@ -27,8 +27,8 @@ const GalleryTab: FC<GalleryTabProps> = (props) => {
               src={image.url}
               alt=""
               className="object-cover object-center"
-              priority={false}
-              sizes="(max-width: 768px) auto"
+              priority={true}
+              sizes="(max-width: 768px) auto, (max-width: 1200px) 50vw, auto"
             />
           </span>
           <span

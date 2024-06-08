@@ -6,6 +6,7 @@ import Currency from "./currency";
 import { Button } from "./Button";
 import { ShoppingCart } from "lucide-react";
 import { BoardColor } from "../board-color";
+import { useTranslations } from "next-intl";
 
 interface ProductInfoProps {
   product: ProductInt | null,
@@ -13,6 +14,7 @@ interface ProductInfoProps {
 
 const ProductInfo: FC<ProductInfoProps> = (props) => {
   const { product } = props;
+  const t = useTranslations('Product');
 
   if(!product) return null;
 
@@ -46,7 +48,7 @@ const ProductInfo: FC<ProductInfoProps> = (props) => {
           <h3
             className="font-semibold text-background"
           >
-            Size:
+            {t("Size")}:
           </h3>
           <div>
             {product.size.value}
@@ -58,7 +60,7 @@ const ProductInfo: FC<ProductInfoProps> = (props) => {
           <h3
             className="font-semibold text-background"
           >
-            Color:
+            {t("Color")}:
           </h3>
           <BoardColor
             url={product.color.url}
@@ -76,7 +78,7 @@ const ProductInfo: FC<ProductInfoProps> = (props) => {
             className="flex items-center gap-x-2"
           >
             <ShoppingCart/>
-            Add to Cart
+            {t("AddToCart")}
           </Button>
         </div>
       </div>
