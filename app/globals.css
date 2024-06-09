@@ -34,13 +34,13 @@
 
       --radius: 0.5rem;
 
-      --background: white;
-      --foreground: black;
       --bg-btn: black;
       --bg-btn-revers: white;
       --text-btn: white;
       --bg-board: rgb(249 250 251 / 1);
       --text-board: rgb(17 24 39 / 1);
+
+      --tw-shadow-color: white
     }
 
     .dark {
@@ -72,13 +72,13 @@
       --input: 1 1% 50%;
       --ring: 212.7 26.8% 83.9%;
 
-      --background: black;
-      --foreground: white;
       --bg-btn: white;
       --bg-btn-revers: black;
       --text-btn: black;
       --bg-board: rgb(45 45 45 / 1);
       --text-board: rgb(233 233 233 / 1);
+
+      --tw-shadow-color: black
     }
   }
 
