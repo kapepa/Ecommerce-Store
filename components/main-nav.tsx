@@ -32,7 +32,7 @@ const MainNav: FC<MainNavProps> = (props) => {
             href={route.href}
             className={cn(
               "text-sm font-medium transition-colors hover:text-background",
-              route.active ? "text-background" : "text-neutral-500",
+              route.active ? "text-foreground" : "text-neutral-500",
             )}
           >
             {route.label}

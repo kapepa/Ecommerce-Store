@@ -1,10 +1,12 @@
 import type { Config } from "tailwindcss"
+import plugin from 'tailwindcss/plugin'
 
 const config = {
   darkMode: ["class"],
   content: [
     './pages/**/*.{ts,tsx}',
     './components/**/*.{ts,tsx}',
+    './components/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
 	],
@@ -78,8 +80,25 @@ const config = {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
+    textShadow: {
+      sm: '0px 0px 20px var(--tw-shadow-color)',
+      DEFAULT: '0px 0px 20px var(--tw-shadow-color)',
+      lg: '0px 0px 20px var(--tw-shadow-color)',
+    },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [
+    require("tailwindcss-animate"),
+    plugin(function ({ matchUtilities, theme }) {
+      matchUtilities(
+        {
+          'text-shadow': (value) => ({
+            textShadow: value,
+          }),
+        },
+        { values: theme('textShadow') }
+      )
+    })
+  ],
 } satisfies Config
 
 export default config
