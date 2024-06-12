@@ -10,7 +10,6 @@ interface CartStore {
   removeAll: () => void,
 }
 
-
 const useCart = create(
   persist<CartStore>(
     (set, get) => ({

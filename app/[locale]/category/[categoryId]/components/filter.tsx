@@ -29,7 +29,7 @@ const Filter: FC<FilterProps> = (props) => {
       [valueKey]: id
     }
 
-    if(current[id] === id) query[valueKey] = null;
+    if(current[valueKey] === id) query[valueKey] = null;
 
     const url = queryString.stringifyUrl({
       url: window.location.href,
@@ -62,7 +62,7 @@ const Filter: FC<FilterProps> = (props) => {
             <Button
               className={cn(
                 "rounded-md text-sm text-gray-800 p-2 bg-white border border-gray-300",
-                getSelectedParam === val.id && "bg-black text-white"
+                getSelectedParam === val.id && "bg-black text-foreground hover:text-gray-800"
               )}
               onClick={onClick.bind(null, val.id)}
             >

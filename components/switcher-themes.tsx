@@ -5,8 +5,14 @@ import { Checkbox } from "./ui/checkbox";
 import { Moon, Sun } from "lucide-react";
 import { ThemesView } from "@/enum/themes";
 import { useTheme } from 'next-themes'
+import { cn } from "@/lib/utils";
 
-const SwitcherThemes: FC = () => {
+interface SwitcherThemesProps {
+  className?: string
+}
+
+const SwitcherThemes: FC<SwitcherThemesProps> = (props) => {
+  const { className } = props;
   const { theme, setTheme } = useTheme()
 
   const onChangeTheme = (state: boolean) => {
@@ -28,7 +34,7 @@ const SwitcherThemes: FC = () => {
 
   return (
     <div
-      className="flex items-center gap-x-2 py-4"
+      className={cn("flex items-center gap-x-2 py-4", className)}
     >
       { switchIco }
       <Checkbox

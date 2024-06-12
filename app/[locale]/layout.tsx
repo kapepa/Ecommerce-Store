@@ -44,7 +44,9 @@ async function RootLayout({
           >
             <ModalProvider/>
             <ToastProvider/>
-            <Navbar/>
+            <Navbar
+              locale={locale}
+            />
               {children}
             <Footer/>
           </NextIntlClientProvider>

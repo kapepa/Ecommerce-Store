@@ -4,7 +4,6 @@ import queryString from 'query-string';
 const url = `${process.env.NEXT_PUBLIC_API_URL}/product`;
 
 interface QueryProductsProps {
-  storeId?:         string
   categoryId?:      string
   sizeId?:          string
   colorId?:         string
@@ -16,7 +15,6 @@ const getProducts = async (query: QueryProductsProps): Promise<ProductInt[] | []
     const urlProducts = queryString.stringifyUrl({ 
       url,
       query: {
-        storeId: query.categoryId,
         categoryId: query.categoryId,
         sizeId: query.sizeId,
         colorId: query.colorId,
