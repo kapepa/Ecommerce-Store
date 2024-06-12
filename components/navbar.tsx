@@ -4,8 +4,14 @@ import Link from "next/link";
 import { MainNav } from "./main-nav";
 import { getCategories } from "@/actions/get-categories";
 import { NavbarAction } from "./navbar-action";
+import { MobileNav } from "./mobile-nav";
 
-const Navbar: FC = async () => {
+interface NavbarProps {
+  locale: string
+}
+
+const Navbar: FC<NavbarProps> = async (props) => {
+  const { locale } = props;
   const gcategories = await getCategories();
 
   return (
@@ -29,9 +35,22 @@ const Navbar: FC = async () => {
           { !!gcategories && (
             <MainNav
               data={gcategories}
+              locale={locale}
+              className="md:flex hidden"
             />
           )}
-          <NavbarAction/>
+          {
+            !!gcategories && (
+              <MobileNav
+                data={gcategories}
+                locale={locale}
+              // className="sm:hidden flex"
+            />
+            )
+          }
+          <NavbarAction
+            locale={locale}
+          />
         </div>
       </Container>
     </div>

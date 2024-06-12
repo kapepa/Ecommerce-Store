@@ -1,23 +1,21 @@
 "use client"
 
 import { FC, useLayoutEffect, useState } from "react"
-import { Button } from "./ui/Button";
-import { ShoppingBag } from "lucide-react";
-import { useCart } from "@/hooks/use-cart";
-import { useParams, useRouter } from "next/navigation";
 import { SwitcherThemes } from "./switcher-themes";
 import { LocaleSwitch } from "./locale-switcher";
+import { BtnCart } from "./ui/btn-cart";
 
-const NavbarAction: FC = () => {
-  const { locale } = useParams();
+interface NavbarActionProps {
+  locale: string
+}
+
+const NavbarAction: FC<NavbarActionProps> = (props) => {
+  const { locale } = props;
   const [isMounted, setIsMounted] = useState<boolean>(false);
 
   useLayoutEffect(() => {
     setIsMounted(true);
   }, [setIsMounted])
-
-  const cart = useCart();
-  const router = useRouter();
 
   if (!isMounted) return null;
 
@@ -25,24 +23,16 @@ const NavbarAction: FC = () => {
     <div
       className="ml-auto flex items-center gap-x-4"
     >
-      <SwitcherThemes/>
+      <SwitcherThemes
+        className="md:flex hidden"
+      />
       <LocaleSwitch
         locale={locale}
       />
-      <Button
-        onClick={() => router.push(`/${locale}/cart`)}
-        className="flex items-center rounded-full bg-bgBtn px-4 py-2"
-      >
-        <ShoppingBag
-          size={20}
-          className="text-textBtn"
-        />
-        <span
-          className="ml-2 text-sm font-medium text-textBtn"
-        >
-          { cart.items.length }
-        </span>
-      </Button>
+      <BtnCart
+        locale={locale}
+        className="md:flex hidden"
+      />
     </div>
   )
 }

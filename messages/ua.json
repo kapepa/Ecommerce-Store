@@ -13,6 +13,7 @@
   },
   "Category": {
     "Sizes": "Розміри",
+    "Filter": "Фільтр",
     "Colors": "Кольори"
   },
   "Product": {
@@ -23,5 +24,12 @@
   },
   "Footer": {
     "AllRightsReserved": "2023 Store. Всі права захищені."
+  },
+  "Nav": {
+    "AboutUs": "Про нас"
+  },
+  "About": {
+    "HeaderAbout": "Про нас",
+    "Consultations": "Консультації та замовлення по телефону."
   }
 }

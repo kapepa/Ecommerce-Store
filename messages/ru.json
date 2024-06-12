@@ -13,6 +13,7 @@
   },
   "Category": {
     "Sizes": "Размеры",
+    "Filter": "Фильтр",
     "Colors": "Цвета"
   },
   "Product": {
@@ -23,5 +24,12 @@
   },
   "Footer": {
     "AllRightsReserved": "2023 Store. Все права защищены."
+  },
+  "Nav": {
+    "AboutUs": "О нас"
+  },
+  "About": {
+    "HeaderAbout": "О нас",
+    "Consultations": "Консультации и заказы по телефону."
   }
 }

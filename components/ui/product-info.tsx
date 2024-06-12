@@ -21,7 +21,7 @@ const ProductInfo: FC<ProductInfoProps> = (props) => {
   return (
     <div>
       <h1
-        className="text-3xl font-bold text-background"
+        className="text-3xl font-bold text-foreground"
       >
         {product.name}
       </h1>
@@ -29,7 +29,7 @@ const ProductInfo: FC<ProductInfoProps> = (props) => {
         className="mt-3 flex items-end justify-between"
       >
         <p
-          className="text-2xl text-background"
+          className="text-2xl text-foreground"
         >
           <Currency 
             values={product.price}
@@ -46,7 +46,7 @@ const ProductInfo: FC<ProductInfoProps> = (props) => {
           className="flex items-center gap-x-4"
         >
           <h3
-            className="font-semibold text-background"
+            className="font-semibold text-foreground"
           >
             {t("Size")}:
           </h3>
@@ -58,7 +58,7 @@ const ProductInfo: FC<ProductInfoProps> = (props) => {
           className="flex items-center gap-x-4"
         >
           <h3
-            className="font-semibold text-background"
+            className="font-semibold text-foreground"
           >
             {t("Color")}:
           </h3>

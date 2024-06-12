@@ -1,4 +1,4 @@
-import { getCategories, getCategoryById } from "@/actions/get-categories";
+import { getCategoryById } from "@/actions/get-categories";
 import { getColors } from "@/actions/get-color";
 import { getProducts } from "@/actions/get-product";
 import { getSizes } from "@/actions/get-size";
@@ -10,6 +10,7 @@ import { NoResults } from "@/components/ui/no-results";
 import { ProductCard } from "@/components/ui/product-card";
 import { MobileFilter } from "./components/mobile-filter";
 import { getTranslations } from "next-intl/server";
+import { CategoryBoard } from "./components/category-board";
 
 export const revalidate = 0;
 
@@ -38,8 +39,8 @@ const CategoryIdPage: NextPage<CategoryIdPageProps> = async (props) => {
   
   return (
     <Container>
-      <Billboard
-        data={category?.billboard}
+      <CategoryBoard
+        data={category}
       />
       <div
         className="px-4 sm:px-6 lg:px-8 pb-24"

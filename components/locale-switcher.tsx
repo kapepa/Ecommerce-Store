@@ -3,13 +3,9 @@
 import { FC, useState, useTransition } from "react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
 import { usePathname, useRouter } from "next/navigation";
+import { LocalLanguagesEn } from "@/enum/local-languages";
 
-enum LocaleTranslation {
-  RU = "ru",
-  UK = "uk",
-}
-
-type LocaleType = `${LocaleTranslation}`
+type LocaleType = `${LocalLanguagesEn}`
 
 interface LocaleSwitchProps {
   locale: string | string[],
@@ -38,11 +34,11 @@ const LocaleSwitch: FC<LocaleSwitchProps> = (props) => {
       onValueChange={onSetLanguage}
     >
       <SelectTrigger className="w-20">
-        <SelectValue placeholder={LocaleTranslation.RU} />
+        <SelectValue placeholder={LocalLanguagesEn.RU} />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value={LocaleTranslation.RU}>{LocaleTranslation.RU.toUpperCase()}</SelectItem>
-        <SelectItem value={LocaleTranslation.UK}>{LocaleTranslation.UK.toUpperCase()}</SelectItem>
+        <SelectItem value={LocalLanguagesEn.RU}>{LocalLanguagesEn.RU.toUpperCase()}</SelectItem>
+        <SelectItem value={LocalLanguagesEn.UA}>{LocalLanguagesEn.UA.toUpperCase()}</SelectItem>
       </SelectContent>
     </Select>
   )

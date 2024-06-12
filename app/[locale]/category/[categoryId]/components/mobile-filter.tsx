@@ -8,6 +8,7 @@ import { Dialog } from "@headlessui/react";
 import { Plus, X } from "lucide-react";
 import { FC, useState } from "react";
 import { Filter } from "./filter";
+import { useTranslations } from "next-intl";
 
 interface MobileFilterProps {
   sizes: SizeInt[],
@@ -17,6 +18,7 @@ interface MobileFilterProps {
 const MobileFilter: FC<MobileFilterProps> = (props) => {
   const { sizes, colors } = props;
   const [open, setOpen] = useState<boolean>(false);
+  const t = useTranslations('Category');
 
   const onOpen = () => setOpen(true);
   const onClose = () => setOpen(false);
@@ -24,13 +26,13 @@ const MobileFilter: FC<MobileFilterProps> = (props) => {
   return (
     <>
       <Button
-        className="flex text-white items-center gap-x-2 lg:hidden"
+        className="flex text-background items-center gap-x-2 lg:hidden"
         onClick={onOpen}
       >
         <Plus
           size={20}
         />
-        Filter
+        { t("Filter") }
       </Button>
       <Dialog
         open={open}
@@ -45,7 +47,7 @@ const MobileFilter: FC<MobileFilterProps> = (props) => {
           className="fixed inset-0 z-40 flex"
         >
           <Dialog.Panel
-            className="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-auto bg-white py-4 pb-6 shadow-xl"
+            className="relative ml-auto flex h-full w-full max-w-xs flex-col overflow-auto bg-background py-4 pb-6 shadow-xl border-l-[1px] border"
           >
             <div
               className="flex items-center justify-end px-4"
@@ -60,12 +62,12 @@ const MobileFilter: FC<MobileFilterProps> = (props) => {
             >
               <Filter
                 valueKey="sizeId"
-                name="Sizes"
+                name={t("Sizes")}
                 data={sizes ?? []}
               />
               <Filter
                 valueKey="colorId"
-                name="Colors"
+                name={t("Colors")}
                 data={colors ?? []}
               />
             </div>
