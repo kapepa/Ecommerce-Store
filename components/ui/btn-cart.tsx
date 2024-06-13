@@ -1,6 +1,6 @@
 "use client"
 
-import { FC, useLayoutEffect, useState } from "react";
+import { FC } from "react";
 import { Button } from "./Button";
 import { ShoppingBag } from "lucide-react";
 import { useCart } from "@/hooks/use-cart";

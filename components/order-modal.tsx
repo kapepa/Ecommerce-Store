@@ -12,6 +12,7 @@ import { postCheckout } from "@/actions/post-checkout";
 import { useRouter, useSearchParams } from "next/navigation";
 import queryString from 'query-string';
 import toast from "react-hot-toast";
+import { useTranslations } from "next-intl";
 
 const OrderModal: FC = () => {
   const router = useRouter();
@@ -26,6 +27,7 @@ const OrderModal: FC = () => {
   const openPersonalInfo = usePersonalInfoModal(state => state.onOpen);
 
   const [isPending, startTransition] = useTransition()
+  const t = useTranslations('OrderModal');
 
   const totalPrice = getCart.reduce((accum, prod) => {
     const sum = accum + Number(prod.price)
@@ -77,7 +79,7 @@ const OrderModal: FC = () => {
           <h3
             className="text-2xl font-bold text-center"
           >
-            Personal information
+            {t("PersonalInformation")}
           </h3>
           <div
             className="grid grid-cols-2 grid-rows-3 gap-4"
@@ -85,7 +87,7 @@ const OrderModal: FC = () => {
             <div
               className="text-right"
             >
-              Name :
+              {t("Name")} :
             </div>
             <div
               className="text-left"
@@ -95,7 +97,7 @@ const OrderModal: FC = () => {
             <div
               className="text-right"
             >
-              Phone :
+              {t("Phone")} :
             </div>
             <div
               className="text-left"
@@ -105,7 +107,7 @@ const OrderModal: FC = () => {
             <div
               className="text-right"
             >
-              Address :
+              {t("Address")} :
             </div>
             <div
               className="text-left"
@@ -121,7 +123,7 @@ const OrderModal: FC = () => {
               className="py-2"
               onClick={onEditInfo}
             >
-              Edit
+              {t("Edit")}
             </Button>
           </div>
         </div>
@@ -132,7 +134,7 @@ const OrderModal: FC = () => {
           <h3
             className="text-2xl font-bold text-center pb-4"
           >
-            Your order.
+            {t("YourOrder")}
           </h3>
           <div
             className="flex flex-col gap-y-1"
@@ -143,12 +145,12 @@ const OrderModal: FC = () => {
               <span
                 className="text-right font-bold"
               >
-                Name
+                {t("Name")}
               </span>
               <span
                 className="text-left font-bold"
               >
-                Price
+                {t("Price")}
               </span>
             </div>
             
@@ -181,7 +183,7 @@ const OrderModal: FC = () => {
           <span
             className="text-right font-bold"
           >
-            Order total:
+            {"OrderTotal"}:
           </span>
           <span
             className="text-left"
@@ -200,7 +202,7 @@ const OrderModal: FC = () => {
             className="py-2"
             onClick={onSend}
           >
-            Order
+            {t("Order")}
           </Button>
         </div>
       </div>

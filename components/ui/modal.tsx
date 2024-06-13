@@ -16,9 +16,9 @@ const Modal: FC<ModalProps> = (props) => {
 
   return (
     <Transition
+      as={Fragment}
       show={open}
       appear
-      as={Fragment}
     >
       <Dialog
         as="div"
