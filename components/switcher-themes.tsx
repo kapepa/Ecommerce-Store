@@ -13,7 +13,7 @@ interface SwitcherThemesProps {
 
 const SwitcherThemes: FC<SwitcherThemesProps> = (props) => {
   const { className } = props;
-  const { theme, setTheme } = useTheme()
+  const { theme, setTheme } = useTheme();
 
   const onChangeTheme = (state: boolean) => {
     const newTheme = ThemesView.light === theme ? ThemesView.dark : ThemesView.light;

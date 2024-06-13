@@ -8,10 +8,10 @@ interface OrderModalProps {
 
 const useOrderModal = create<OrderModalProps>(
   (set) => ({
-  open: false,
-  onClose: () => set({ open: false }),
-  onOpen: () => set({ open: true }),
-})
+    open: false,
+    onClose: () => set({ open: false }),
+    onOpen: () => set({ open: true }),
+  })
 );
 
 export { useOrderModal };

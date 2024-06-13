@@ -1,10 +1,9 @@
 import { FC } from "react";
 import { Container } from "./ui/container";
 import Link from "next/link";
-import { MainNav } from "./main-nav";
 import { getCategories } from "@/actions/get-categories";
 import { NavbarAction } from "./navbar-action";
-import { MobileNav } from "./mobile-nav";
+import { RootNav } from "./root-nav";
 
 interface NavbarProps {
   locale: string
@@ -32,22 +31,10 @@ const Navbar: FC<NavbarProps> = async (props) => {
               Store
             </p>
           </Link>
-          { !!gcategories && (
-            <MainNav
-              data={gcategories}
-              locale={locale}
-              className="md:flex hidden"
-            />
-          )}
-          {
-            !!gcategories && (
-              <MobileNav
-                data={gcategories}
-                locale={locale}
-              // className="sm:hidden flex"
-            />
-            )
-          }
+          <RootNav
+            data={gcategories}
+            locale={locale}
+          />
           <NavbarAction
             locale={locale}
           />

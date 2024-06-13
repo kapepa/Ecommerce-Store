@@ -12,6 +12,7 @@ import { Button } from "./ui/Button";
 import { Separator } from "./ui/separator";
 import { InputPhone } from "./ui/input-phone";
 import { useOrderModal } from "@/hooks/use-order-modal";
+import { useTranslations } from "next-intl";
 
 interface PersonalInfoFormprops {
   initial: UserType | undefined
@@ -22,6 +23,7 @@ const PersonalInfoForm: FC<PersonalInfoFormprops> = (props) => {
   const setInfo = usePersonalInfoModal(state => state.setInfo);
   const setInfoClose = usePersonalInfoModal(state => state.onClose);
   const onOrderOpen = useOrderModal(state => state.onOpen);
+  const t = useTranslations('PersonalInfoForm');
   
   const form = useForm<z.infer<typeof PersonalInfoSchema>>({
     resolver: zodResolver(PersonalInfoSchema),
@@ -53,11 +55,11 @@ const PersonalInfoForm: FC<PersonalInfoFormprops> = (props) => {
             render={({ field }) => {
               return (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>{t("Name")}</FormLabel>
                   <FormControl>
                     <Input 
                       {...field} 
-                      placeholder="Your name" 
+                      placeholder={t("YourName")}
                       onChange={(e) => {
                         setInfo({ name: e.target.value });
                         field.onChange(e)
@@ -75,10 +77,10 @@ const PersonalInfoForm: FC<PersonalInfoFormprops> = (props) => {
             render={({ field }) => {
               return (
                 <FormItem>
-                  <FormLabel>Phone</FormLabel>
+                  <FormLabel>{t("Phone")}</FormLabel>
                   <FormControl>
                     <InputPhone
-                      placeholder="Your phone" 
+                      placeholder={t("YourPhone")} 
                       defaultValue={field.value}
                       onChange={(e) => {
                         setInfo({ phone: e.target.value });
@@ -97,11 +99,11 @@ const PersonalInfoForm: FC<PersonalInfoFormprops> = (props) => {
             render={({ field }) => {
               return (
                 <FormItem>
-                  <FormLabel>Address</FormLabel>
+                  <FormLabel>{t("Address")}</FormLabel>
                   <FormControl>
                     <Input 
                       {...field} 
-                      placeholder="Your address" 
+                      placeholder={t("YourAddress")}
                       onChange={(e) => {
                         setInfo({ address: e.target.value });
                         field.onChange(e)
@@ -121,7 +123,9 @@ const PersonalInfoForm: FC<PersonalInfoFormprops> = (props) => {
           <Button 
             type="submit"
             className="px-10 py-4"
-          >Apply</Button>
+          >
+            {t("Apply")}
+          </Button>
         </div>
       </form>
     </Form>

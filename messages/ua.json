@@ -31,5 +31,28 @@
   "About": {
     "HeaderAbout": "Про нас",
     "Consultations": "Консультації та замовлення по телефону."
+  },
+  "OrderModal": {
+    "Name": "Ім'я",
+    "Edit": "Редагувати",
+    "Order": "Замовити",
+    "Price": "Ціна",
+    "Phone": "Телефон",
+    "Address": "Адреса",
+    "YourOrder": "Ваше замовлення",
+    "OrderTotal": "Загальна сума замовлення",
+    "PersonalInformation": "Персональна інформація"
+  },
+  "PersonalInfoModal": {
+    "RemainYourContact": "Залишайтеся на зв'язку"
+  },
+  "PersonalInfoForm": {
+    "Name": "Ім'я",
+    "Phone": "Телефон",
+    "Apply": "Застосувати",
+    "Address": "Адреса",
+    "YourName": "Ваше ім'я",
+    "YourPhone": "Ваш телефон",
+    "YourAddress": "Ваша адреса"
   }
 }

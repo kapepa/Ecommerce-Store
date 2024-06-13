@@ -1,12 +1,16 @@
+"use client"
+
 import { FC } from "react";
 import { Modal } from "./ui/modal";
 import { usePersonalInfoModal } from "@/hooks/use-personal-info-modal";
 import { PersonalInfoForm } from "./personal-info-form";
+import { useTranslations } from "next-intl";
 
 const PersonalInfoModal: FC = () => {
   const open = usePersonalInfoModal(state => state.open);
   const getInfo = usePersonalInfoModal(state => state.info);
   const onClose = usePersonalInfoModal(state => state.onClose);
+  const t = useTranslations('PersonalInfoModal');
 
   return (
     <Modal
@@ -22,7 +26,7 @@ const PersonalInfoModal: FC = () => {
           <h4
             className="font-semibold text-2xl"
           >
-            Remain your contact
+            {t("RemainYourContact")}
           </h4>
         </div>
         <div

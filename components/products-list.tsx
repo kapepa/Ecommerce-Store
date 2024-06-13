@@ -2,7 +2,6 @@ import { ProductInt } from "@/interface/product";
 import { FC } from "react";
 import { NoResults } from "./ui/no-results";
 import { ProductCard } from "./ui/product-card";
-import { useParams } from "next/navigation";
 
 interface ProductsListProps {
   title: string,

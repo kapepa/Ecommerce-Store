@@ -61,8 +61,8 @@ const Filter: FC<FilterProps> = (props) => {
           >
             <Button
               className={cn(
-                "rounded-md text-sm text-gray-800 p-2 bg-white border border-gray-300",
-                getSelectedParam === val.id && "bg-black text-foreground hover:text-gray-800"
+                "rounded-md text-sm p-2 text-foreground bg-background border border-gray-300 hover:text-gray-700",
+                getSelectedParam === val.id && "bg-foreground text-background hover:text-accent-foreground hover:bg-accent"
               )}
               onClick={onClick.bind(null, val.id)}
             >

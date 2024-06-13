@@ -1,5 +1,6 @@
 "use client"
 
+import { MobileCategoryModal } from "@/components/mobile-category-modal";
 import { OrderModal } from "@/components/order-modal";
 import { PersonalInfoModal } from "@/components/personal-info-modal";
 import { PreviewModal } from "@/components/preview-modal";
@@ -19,6 +20,7 @@ const ModalProvider = () => {
       <OrderModal/>
       <PreviewModal/>
       <PersonalInfoModal/>
+      <MobileCategoryModal/>
     </>
   )
 }

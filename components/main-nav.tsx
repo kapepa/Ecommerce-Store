@@ -1,41 +1,24 @@
 "use client"
 
-import { CategoryInt } from "@/interface/category";
+import { NavigationInt } from "@/interface/navigation";
 import { cn } from "@/lib/utils";
-import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { FC } from "react";
 
 interface MainNavProps {
-  data: CategoryInt[],
-  locale: string
   className?: string,
+  navigation: NavigationInt[]
 }
 
 const MainNav: FC<MainNavProps> = (props) => {
-  const { data, locale, className } = props;
-  const pathname = usePathname();
-  const t = useTranslations('Nav');
-
-  const routes = data.map(route => ({
-    href: `/${locale}/category/${route.id}`,
-    label: route.name,
-    active: pathname === `/${locale}/category/${route.id}`,
-  })).concat([
-    {
-      href: `/${locale}/about`,
-      label: t("AboutUs"),
-      active: pathname === `/${locale}/about`,
-    }
-  ])
+  const { navigation, className } = props;
 
   return (
     <nav
       className={cn("mx-6 flex items-center space-x-4 lg:space-x-6 pr-2", className)}
     >
       {
-        routes.map((route, index) => (
+        navigation.map((route, index) => (
           <Link
             key={`${route.href}-${index}`}
             href={route.href}
