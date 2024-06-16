@@ -11,7 +11,7 @@ interface NavbarProps {
 
 const Navbar: FC<NavbarProps> = async (props) => {
   const { locale } = props;
-  const gcategories = await getCategories();
+  const gcategories = await getCategories({ locale });
 
   return (
     <div

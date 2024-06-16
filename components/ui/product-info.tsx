@@ -23,7 +23,7 @@ const ProductInfo: FC<ProductInfoProps> = (props) => {
       <h1
         className="text-3xl font-bold text-foreground"
       >
-        {product.name}
+        {product.ruName ?? product.uaName}
       </h1>
       <div
         className="mt-3 flex items-end justify-between"
@@ -69,7 +69,7 @@ const ProductInfo: FC<ProductInfoProps> = (props) => {
         <div
            className="flex items-center gap-x-4"
         >
-          <p>{product.description}</p>
+          <p>{product.ruDescription ?? product.uaDescription}</p>
         </div>
         <div
           className="mt-10 flex items-center gap-x-3"

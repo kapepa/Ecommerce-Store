@@ -3,6 +3,7 @@ import { BillboardInt } from "./billboard";
 export interface CategoryInt {
   id: string,
   url: string,
-  name: string,
+  ruName: string,
+  uaName: string,
   billboard: BillboardInt,
 }

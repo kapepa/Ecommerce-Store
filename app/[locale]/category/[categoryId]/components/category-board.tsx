@@ -15,7 +15,7 @@ const CategoryBoard: FC<CategoryBoardProps> = (props) => {
       className="p-4 sm:p-6 lg:p-8 rounded-xl overflow-hidden"
     >
       <div
-        className="rounded-xl relative aspect-square md:aspect-[2.4/1] overflow-hidden bg-cove"
+        className="rounded-xl relative aspect-square md:aspect-[2.4/1] overflow-hidden bg-cover bg-no-repeat"
         style={{backgroundImage: `url(${data?.url})`}}
       >
         <div
@@ -24,7 +24,7 @@ const CategoryBoard: FC<CategoryBoardProps> = (props) => {
           <h2 
             className="font-bold text-3xl sm:text-5xl lg:text-6xl sm:max-w-xl max-w-xs text-shadow"
           >
-            { data?.name }
+            { data?.ruName ?? data.uaName }
           </h2>
         </div>
       </div>

@@ -66,7 +66,7 @@ const Filter: FC<FilterProps> = (props) => {
               )}
               onClick={onClick.bind(null, val.id)}
             >
-              {val.name}
+              {val.ruName ?? val.uaName}
             </Button>
           </div>
         ))}

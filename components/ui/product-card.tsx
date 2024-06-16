@@ -85,12 +85,12 @@ const ProductCard: FC<ProductCardProps> = (props) => {
         <p
           className="font-semibold text-lg"
         >
-          {product.name}
+          {product.ruName ?? product.uaName}
         </p>
         <p
           className="text-sm text-gray-500"
         >
-          {product.category.name}
+          {product.category.ruName ?? product.category.uaName}
         </p>
       </div>
       <div

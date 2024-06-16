@@ -162,7 +162,7 @@ const OrderModal: FC = () => {
                 <span
                   className="text-right"
                 >
-                  {prod.name} :
+                  {prod.ruName ?? prod.uaName} :
                 </span>
                 <span
                   className="text-left"

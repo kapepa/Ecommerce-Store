@@ -1,10 +1,18 @@
 import { CategoryInt } from "@/interface/category";
+import queryString from 'query-string';
 
 const url = `${process.env.NEXT_PUBLIC_API_URL}/category`;
 
-const getCategories = async (): Promise<CategoryInt[]> => {
+const getCategories = async ({locale}: {locale: string}): Promise<CategoryInt[]> => {
   try {
-    const res = await fetch(url, { method: "GET" });
+    const urlCategories = queryString.stringifyUrl({ 
+      url,
+      query: {
+        locale,
+      }
+    });
+
+    const res = await fetch(urlCategories, { method: "GET" });
     if (res.status !== 200) return [];
 
     return res.json();
@@ -13,9 +21,15 @@ const getCategories = async (): Promise<CategoryInt[]> => {
   }
 }
 
-const getCategoryById = async (id: string): Promise<CategoryInt | null> => {
+const getCategoryById = async ({ id, locale }: {id: string, locale: string}): Promise<CategoryInt | null> => {
   try {
-    const category = await fetch(`${url}/${id}`);
+    const urlCategoriy = queryString.stringifyUrl({ 
+      url: `${url}/${id}`,
+      query: {
+        locale,
+      }
+    });
+    const category = await fetch(urlCategoriy, { method: "GET" });
 
     return category.json();
   } catch (error) {
