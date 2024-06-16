@@ -54,7 +54,7 @@ const CartItem: FC<CartItemProps> = (props) => {
             <p
               className="text-lg font-semibold"
             >
-              {product.name}
+              {product.ruName ?? product.uaName}
             </p>
           </div>
           <div
@@ -63,12 +63,12 @@ const CartItem: FC<CartItemProps> = (props) => {
             <p
               className="text-gray-500"
             >
-              {product.color.name}
+              {product.color.ruName ?? product.uaName}
             </p>
             <p
               className="text-gray-500 ml-4 border-l border-gray-200 pl-4"
             >
-              {product.size.name}
+              {product.size.ruName ?? product.uaName}
             </p>           
           </div>
           <Currency
