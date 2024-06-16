@@ -14,8 +14,8 @@ interface NextPageProps {
 
 const HomePage: NextPage<NextPageProps> = async (props) => {
   const { params: { locale } } = props;
-  const products = await getProducts({ isFeatured: true });
-  const billboard = await getBillboard();
+  const billboard = await getBillboard({locale});
+  const products = await getProducts({locale, query: { isFeatured: true }});
   const t = await getTranslations('Home');
   
   return (

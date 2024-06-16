@@ -1,5 +1,6 @@
 export interface BillboardInt {
   id: string,
-  label: string,
+  ruLabel: string,
+  uaLabel: string,
   imageUrl: string,
 }

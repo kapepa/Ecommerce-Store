@@ -23,7 +23,7 @@ const RootNav: FC<RootNavProps> = (props) => {
 
   const gcategoriesNav: NavigationInt[] = data.map(route => ({
     href: `/${locale}/category/${route.id}`,
-    label: route.name,
+    label: route.ruName ?? route.uaName,
     active: pathname === `/${locale}/category/${route.id}`,
   })).concat([
     {

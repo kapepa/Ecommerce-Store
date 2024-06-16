@@ -13,19 +13,19 @@ interface ProductIdPageProps {
   }
 }
 
-export async function generateMetadata({ params }: ProductIdPageProps): Promise<Metadata> {
-  const product = await getOneProductById(params.productId);
+export async function generateMetadata({ params: { locale, productId} }: ProductIdPageProps): Promise<Metadata> {
+  const product = await getOneProductById({ locale,  id: productId });
 
   return {
-    title: product?.name,
+    title: product?.ruName ?? product?.uaName,
     description: product?.meta,
   };
 }
 
 const ProductIdPage: NextPage<ProductIdPageProps> = async (props) => {
-  const { params } = props;
-  const product = await getOneProductById(params.productId);
-  const suggestedProducts = await getProducts({ categoryId: product?.category.id });
+  const { params: { locale, productId } } = props;
+  const product = await getOneProductById({ locale,  id: productId });
+  const suggestedProducts = await getProducts({ locale, query: { categoryId: product?.category.id } });
   const t = await getTranslations("Product");
 
   return (
@@ -52,7 +52,7 @@ const ProductIdPage: NextPage<ProductIdPageProps> = async (props) => {
         />
         <ProductsList
           title={t("RelatedItems")}
-          locale={params.locale}
+          locale={locale}
           products={suggestedProducts}
         />
       </div>

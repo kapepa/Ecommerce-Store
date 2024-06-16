@@ -10,11 +10,12 @@ interface QueryProductsProps {
   isFeatured?:      boolean
 }
 
-const getProducts = async (query: QueryProductsProps): Promise<ProductInt[] | []> => {
+const getProducts = async ({ locale, query }: {locale: string, query: QueryProductsProps}): Promise<ProductInt[] | []> => {
   try {
     const urlProducts = queryString.stringifyUrl({ 
       url,
       query: {
+        locale,
         categoryId: query.categoryId,
         sizeId: query.sizeId,
         colorId: query.colorId,
@@ -29,9 +30,13 @@ const getProducts = async (query: QueryProductsProps): Promise<ProductInt[] | []
   }
 }
 
-const getOneProductById = async (id: string): Promise<ProductInt | null> => {
+const getOneProductById = async ({id, locale}: {id: string, locale: string}): Promise<ProductInt | null> => {
   try {
-    const res = await fetch(`${url}/${id}`, { cache: 'no-store' });
+    const urlProduct = queryString.stringifyUrl({
+      url: `${url}/${id}`, 
+      query: {locale}
+    });
+    const res = await fetch(urlProduct, { method: "GET", cache: 'no-store' });
 
     return res.json();
   } catch (error) {

@@ -2,7 +2,6 @@ import { getCategoryById } from "@/actions/get-categories";
 import { getColors } from "@/actions/get-color";
 import { getProducts } from "@/actions/get-product";
 import { getSizes } from "@/actions/get-size";
-import { Billboard } from "@/components/billboard";
 import { Container } from "@/components/ui/container";
 import { NextPage } from "next";
 import { Filter } from "./components/filter";
@@ -27,14 +26,20 @@ interface CategoryIdPageProps {
 
 const CategoryIdPage: NextPage<CategoryIdPageProps> = async (props) => {
   const { params, searchParams } = props;
-  const products = await getProducts({ 
-    categoryId: params.categoryId,
-    colorId: searchParams.colorId,
-    sizeId: searchParams.sizeId, 
+  const products = await getProducts({
+    locale: params.locale,
+    query: { 
+      categoryId: params.categoryId,
+      colorId: searchParams.colorId,
+      sizeId: searchParams.sizeId, 
+    }
   });
   const sizes = await getSizes(params.categoryId);
   const colors = await getColors(params.categoryId);
-  const category = await getCategoryById(params.categoryId);
+  const category = await getCategoryById({
+    id: params.categoryId,
+    locale: params.locale,
+  });
   const t = await getTranslations('Category');
   
   return (
@@ -73,7 +78,7 @@ const CategoryIdPage: NextPage<CategoryIdPageProps> = async (props) => {
             <div
               className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4"
             >
-              {products.map((product, index) => (
+              { !!products.length && products.map((product, index) => (
                 <ProductCard
                   key={`${product.id}-${index}`}
                   locale={params.locale}

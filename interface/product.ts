@@ -5,9 +5,11 @@ import { SizeInt } from "./size"
 
 export interface ProductInt {
   id:              string
-  name:            string
+  ruName:          string
+  uaName:          string
   meta:            string
-  description:     string
+  ruDescription:   string
+  uaDescription:   string
   price:           string     
   isFeatured:      string
   // isArchived:      boolean

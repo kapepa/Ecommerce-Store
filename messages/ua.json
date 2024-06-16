@@ -54,5 +54,8 @@
     "YourName": "Ваше ім'я",
     "YourPhone": "Ваш телефон",
     "YourAddress": "Ваша адреса"
+  },
+  "NoResults": {
+    "NotFound": "Нічого не знайдено"
   }
 }
