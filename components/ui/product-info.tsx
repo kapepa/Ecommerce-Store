@@ -1,7 +1,7 @@
 "use client"
 
 import { ProductInt } from "@/interface/product"
-import { FC, useLayoutEffect, useState } from "react"
+import { FC, useEffect, useLayoutEffect, useState } from "react"
 import Currency from "./currency";
 import { Button } from "./Button";
 import { ShoppingCart } from "lucide-react";
@@ -21,11 +21,11 @@ const ProductInfo: FC<ProductInfoProps> = (props) => {
   const { ids, addId, removeId } = useCart();
   const [inCart, setInCart] = useState<boolean>(false);
 
-  if(!product) return null;
-
-  useLayoutEffect(() => {
-    setInCart(ids.includes(product.id));
+  useEffect(() => {
+    if(!!product) setInCart(ids.includes(product.id))
   }, [ids, product])
+
+  if(!product) return null;
 
   const toggleGoods = () => {
     if (inCart) {

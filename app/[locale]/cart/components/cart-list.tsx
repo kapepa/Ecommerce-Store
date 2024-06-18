@@ -24,7 +24,7 @@ const CartList: FC<CartListProps> = (props) => {
       .then((products) => setProducts(products))
       .catch(() => {})
     })
-  }, [getCart]);
+  }, [ids, locale]);
 
   // if (isPending) {
   //   return 

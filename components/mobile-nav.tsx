@@ -22,10 +22,11 @@ const MobileNav: FC<MobileNav> = (props) => {
   const { open, onOpen, onClose } = useCategoryNavModal();
   const { theme, setTheme } = useTheme();
   const [isTouch, setIsTouch] = useState<boolean>(false);
+  const isWindow = (typeof window !== "undefined" && 'ontouchstart' in window)
 
   useEffect(() => {
-    setIsTouch('ontouchstart'  in window);
-  }, [(typeof window !== "undefined" && 'ontouchstart'  in window)])
+    setIsTouch('ontouchstart' in window);
+  }, [isWindow])
 
   const onToggleTheme = (event: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.TouchEvent<HTMLButtonElement>) => {
     const changerTheme = () => {
