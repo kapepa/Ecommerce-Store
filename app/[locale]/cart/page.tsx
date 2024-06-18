@@ -3,14 +3,17 @@
 import { Container } from "@/components/ui/container";
 import { useCart } from "@/hooks/use-cart";
 import { NextPage } from "next";
-import { useEffect, useState } from "react";
+import { FC, Suspense, useEffect, useState } from "react";
 import { CartItem } from "./components/cart-item";
 import { Summary } from "./components/summary";
 import { useTranslations } from "next-intl";
+import { getCart } from "@/actions/get-cart";
+import { CartList } from "./components/cart-list";
 
+const Load: FC = () => <div className="text-red-600 text-lg">LOADING</div>
 
 const CartPage: NextPage = () => {
-  const cart = useCart();
+  const { ids } = useCart();
   const t = useTranslations('Cart');
   const [isMounted, setIsMounted] = useState<boolean>(false);
 
@@ -32,20 +35,26 @@ const CartPage: NextPage = () => {
             {t("ShoppingCart")}
           </h1>
           <div
-            className="mt-12 lg:grid lg: grid-cols-12 lg: items-start gap-x-12"
+            className="mt-6 gap-x-12 lg:items-start md:mt-12 lg:grid lg:grid-cols-12"
           >
             <div
               className="lg:col-span-7"
             >
+              <CartList ids={ids} />
+            </div>
+
+            {/* <div
+              className="lg:col-span-7"
+            >
               {
-                cart.items.length === 0 && (
+                ids.length === 0 && (
                   <p className="text-neutral-500">
                     {t("NoItemsAddedToCart")}
                   </p>
                 )
               }
               <ul>
-                {cart.items.length > 0 && cart.items.map((product, index) => (
+                {products.items.length > 0 && products.items.map((product, index) => (
                   <CartItem
                     key={`${product.id}-${index}`}
                     product={product}
@@ -53,7 +62,7 @@ const CartPage: NextPage = () => {
                 ))}
               </ul>
             </div>
-            <Summary/>
+            <Summary/> */}
           </div>
         </div>
       </Container>

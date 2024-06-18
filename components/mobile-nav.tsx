@@ -18,7 +18,7 @@ interface MobileNav {
 
 const MobileNav: FC<MobileNav> = (props) => {
   const { locale, className } = props;
-  const cart = useCart();
+  const { ids } = useCart();
   const { open, onOpen, onClose } = useCategoryNavModal();
   const { theme, setTheme } = useTheme();
   const [isTouch, setIsTouch] = useState<boolean>(false);
@@ -89,7 +89,7 @@ const MobileNav: FC<MobileNav> = (props) => {
               <span
                 className="absolute left-[100%] -top-1 flex justify-center items-center bg-red-500 rounded-full h-5 w-5 text-sm transform -translate-x-2"
               >
-                {cart.items.length}
+                {ids.length}
               </span>
             </Link>
           </Button>

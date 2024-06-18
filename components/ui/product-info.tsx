@@ -1,12 +1,14 @@
 "use client"
 
 import { ProductInt } from "@/interface/product"
-import { FC } from "react"
+import { FC, useLayoutEffect, useState } from "react"
 import Currency from "./currency";
 import { Button } from "./Button";
 import { ShoppingCart } from "lucide-react";
 import { BoardColor } from "../board-color";
 import { useTranslations } from "next-intl";
+import { useCart } from "@/hooks/use-cart";
+import toast from "react-hot-toast";
 
 interface ProductInfoProps {
   product: ProductInt | null,
@@ -14,9 +16,27 @@ interface ProductInfoProps {
 
 const ProductInfo: FC<ProductInfoProps> = (props) => {
   const { product } = props;
-  const t = useTranslations('Product');
+  const t = useTranslations("Product");
+  const tCard = useTranslations("ProductCard");
+  const { ids, addId, removeId } = useCart();
+  const [inCart, setInCart] = useState<boolean>(false);
 
   if(!product) return null;
+
+  useLayoutEffect(() => {
+    setInCart(ids.includes(product.id));
+  }, [ids, product])
+
+  const toggleGoods = () => {
+    if (inCart) {
+      removeId(product.id);
+      toast.success(tCard("ItemRemovedFromTheCart"));
+    }
+    else {
+      addId(product.id)
+      toast.success(tCard("ItemAddedToCart"));
+    }
+  }
 
   return (
     <div>
@@ -75,10 +95,11 @@ const ProductInfo: FC<ProductInfoProps> = (props) => {
           className="mt-10 flex items-center gap-x-3"
         >
           <Button
+          onClick={toggleGoods}
             className="flex items-center gap-x-2"
           >
             <ShoppingCart/>
-            {t("AddToCart")}
+            { inCart ? t("RemoveFromCart") : t("AddToCart")}
           </Button>
         </div>
       </div>
