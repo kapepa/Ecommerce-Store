@@ -21,7 +21,7 @@ const OrderModal: FC = () => {
   const open = useOrderModal(state => state.open);
   const onOrderClose = useOrderModal(state => state.onClose);
   
-  const getCart = useCart(state => state.items);
+  // const getCart = useCart(state => state.items);
 
   const getInfo = usePersonalInfoModal(state => state.info);
   const openPersonalInfo = usePersonalInfoModal(state => state.onOpen);
@@ -29,10 +29,10 @@ const OrderModal: FC = () => {
   const [isPending, startTransition] = useTransition()
   const t = useTranslations('OrderModal');
 
-  const totalPrice = getCart.reduce((accum, prod) => {
-    const sum = accum + Number(prod.price)
-    return sum
-  },0);
+  // const totalPrice = getCart.reduce((accum, prod) => {
+  //   const sum = accum + Number(prod.price)
+  //   return sum
+  // },0);
 
   const onEditInfo = () => {
     onOrderClose();
@@ -40,29 +40,29 @@ const OrderModal: FC = () => {
   }
 
   const onSend = () => {
-    startTransition(async () => {
-      try {
-        const extractId = getCart.map(prod => prod.id);
-        const response = await postCheckout({ productIds: extractId, info: getInfo });
+    // startTransition(async () => {
+    //   try {
+    //     const extractId = getCart.map(prod => prod.id);
+    //     const response = await postCheckout({ productIds: extractId, info: getInfo });
 
-        const current = queryString.parse(params.toString());
+    //     const current = queryString.parse(params.toString());
 
-        const query = {
-          ...current,
-          ...response,
-        }
-        const url = queryString.stringifyUrl({
-          url: window.location.href,
-          query,
-        });
+    //     const query = {
+    //       ...current,
+    //       ...response,
+    //     }
+    //     const url = queryString.stringifyUrl({
+    //       url: window.location.href,
+    //       query,
+    //     });
 
-        onOrderClose();
-        router.push("/");
-        toast.success("Your order has been completed successfully.")
-      } catch (error) {
-        toast.error("Something went wrong.")
-      }
-    })
+    //     onOrderClose();
+    //     router.push("/");
+    //     toast.success("Your order has been completed successfully.")
+    //   } catch (error) {
+    //     toast.error("Something went wrong.")
+    //   }
+    // })
   }
 
   return (
@@ -154,7 +154,7 @@ const OrderModal: FC = () => {
               </span>
             </div>
             
-            { getCart.map((prod, index) => (
+            {/* { getCart.map((prod, index) => (
               <div 
                 key={`${prod.id}-${index}`}
                 className="grid grid-cols-2 grid-rows-1 gap-x-6"
@@ -172,7 +172,7 @@ const OrderModal: FC = () => {
                   />
                 </span>
               </div>
-            )) }
+            )) } */}
 
           </div>
         </div>
@@ -188,9 +188,9 @@ const OrderModal: FC = () => {
           <span
             className="text-left"
           >
-            <Currency
+            {/* <Currency
               values={totalPrice.toString()}
-            />
+            /> */}
           </span>
         </div>
         <Separator/>

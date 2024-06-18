@@ -33,7 +33,7 @@ const Modal: FC<ModalProps> = (props) => {
           className="fixed inset-0 overflow-y-auto"
         >
           <div
-            className="flex min-h-full items-center justify-center p-4 text-center "
+            className="flex min-h-full items-center justify-center p-4 text-center"
           >
             <Transition.Child
               as={Fragment}
@@ -45,10 +45,10 @@ const Modal: FC<ModalProps> = (props) => {
               leaveTo="opacity-0 scale-95"
             >
               <Dialog.Panel
-                className="w-full max-w-3xl overflow-hidden rounded-lg text-left align-middle"
+                className="w-full max-w-3xl overflow-hidden rounded-lg text-left align-middle border-gray border-2 border-solid"
               >
                 <div
-                  className="relative flex w-full items-center overflow-hidden bg-bgBoard px-4 pb-8 pa-14 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8"
+                  className="relative flex w-full items-center overflow-hidden bg-background px-4 pb-8 pa-14 shadow-2xl sm:px-6 sm:pt-8 md:p-6 lg:p-8"
                 >
                   <div
                     className="absolute right-4 top-4"

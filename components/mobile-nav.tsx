@@ -18,14 +18,15 @@ interface MobileNav {
 
 const MobileNav: FC<MobileNav> = (props) => {
   const { locale, className } = props;
-  const cart = useCart();
+  const { ids } = useCart();
   const { open, onOpen, onClose } = useCategoryNavModal();
   const { theme, setTheme } = useTheme();
   const [isTouch, setIsTouch] = useState<boolean>(false);
+  const isWindow = (typeof window !== "undefined" && 'ontouchstart' in window)
 
   useEffect(() => {
-    setIsTouch('ontouchstart'  in window);
-  }, [(typeof window !== "undefined" && 'ontouchstart'  in window)])
+    setIsTouch('ontouchstart' in window);
+  }, [isWindow])
 
   const onToggleTheme = (event: React.MouseEvent<HTMLButtonElement, MouseEvent> | React.TouchEvent<HTMLButtonElement>) => {
     const changerTheme = () => {
@@ -89,7 +90,7 @@ const MobileNav: FC<MobileNav> = (props) => {
               <span
                 className="absolute left-[100%] -top-1 flex justify-center items-center bg-red-500 rounded-full h-5 w-5 text-sm transform -translate-x-2"
               >
-                {cart.items.length}
+                {ids.length}
               </span>
             </Link>
           </Button>

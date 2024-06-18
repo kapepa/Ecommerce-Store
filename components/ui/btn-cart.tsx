@@ -15,7 +15,7 @@ interface BtnCartProps {
 
 const BtnCart: FC<BtnCartProps> = (props) => {
   const { locale, className } = props;
-  const cart = useCart();
+  const { ids } = useCart();
   const router = useRouter();
 
   return (
@@ -28,9 +28,9 @@ const BtnCart: FC<BtnCartProps> = (props) => {
         className="text-textBtn"
       />
       <span
-        className="ml-2 text-sm font-medium text-textBtn"
+        className="ml-2 text-sm font-medium text-textBtn w-4"
       >
-        { cart.items.length }
+        { ids.length }
       </span>
     </Button>
   )

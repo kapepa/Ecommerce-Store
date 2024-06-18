@@ -20,6 +20,7 @@
     "Size": "Розмір",
     "Color": "Кольор",
     "AddToCart": "Додати до кошику",
+    "RemoveFromCart": "Видалити з кошика",
     "RelatedItems": "Схожі товари"
   },
   "Footer": {
@@ -57,5 +58,11 @@
   },
   "NoResults": {
     "NotFound": "Нічого не знайдено"
+  },
+  "ProductCard": {
+    "ItemAddedToCart": "Товар доданий до кошика.",
+    "ItemAlreadyInCart": "Товар уже в кошику.",
+    "ItemRemovedFromTheCart": "Товар видалено з кошика.",
+    "AllItemsRemovedFromTheCart": "Всі елементи вилучені з картки"
   }
 }

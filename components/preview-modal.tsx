@@ -1,7 +1,7 @@
 "use client"
 
 import { usePreviewModal } from "@/hooks/use-preview-modal";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { Modal } from "./ui/modal";
 import { Gallery } from "./gallery";
 import { ProductInfo } from "./ui/product-info";
@@ -18,7 +18,7 @@ const PreviewModal: FC = () => {
       onClose={previewModal.onClose}
     >
       <div
-        className="grid w-full grid-cols-1 items-start gap-x-6 gap-y-8 sm:grid-cols-12 lg:gap-x-8"
+        className="grid w-full grid-cols-1 items-start gap-x-6 gap-y-8 sm:grid-cols-12 lg:gap-x-8 "
       >
         <div
           className="sm:col-span-4 lg:col-span-5"

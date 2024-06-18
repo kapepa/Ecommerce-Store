@@ -9,6 +9,8 @@ import Currency from "./currency";
 import { useRouter } from "next/navigation";
 import { usePreviewModal } from "@/hooks/use-preview-modal";
 import { useCart } from "@/hooks/use-cart";
+import toast from "react-hot-toast";
+import { useTranslations } from "next-intl";
 
 interface ProductCardProps {
   product: ProductInt,
@@ -19,7 +21,8 @@ const ProductCard: FC<ProductCardProps> = (props) => {
   const { product, locale } = props;
   const router = useRouter();
   const preview = usePreviewModal();
-  const cart = useCart();
+  const { ids, addId } = useCart();
+  const t = useTranslations('ProductCard');
 
   const handleClick = () => {
     router.push(`/${locale}/product/${product.id}`);
@@ -34,7 +37,9 @@ const ProductCard: FC<ProductCardProps> = (props) => {
   const onAddToCart = (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
 
-    cart.addItem(product)
+    if (ids.includes(product.id)) return toast.success(t("ItemAlreadyInCart"));
+    addId(product.id)
+    toast.success(t("ItemAddedToCart"))
   }
 
   return (

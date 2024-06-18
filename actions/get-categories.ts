@@ -33,7 +33,6 @@ const getCategoryById = async ({ id, locale }: {id: string, locale: string}): Pr
 
     return category.json();
   } catch (error) {
-    console.error(error)
     return null;
   }
 }
