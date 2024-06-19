@@ -3,7 +3,7 @@
 import { BoardColor } from "@/components/board-color";
 import Currency from "@/components/ui/currency";
 import { IconButton } from "@/components/ui/icon-button";
-import { useCart } from "@/hooks/use-cart";
+import { Skeleton } from "@/components/ui/skeleton";
 import { ProductInt } from "@/interface/product";
 import { X } from "lucide-react";
 import Image from "next/image";
@@ -11,16 +11,12 @@ import { FC } from "react";
 
 interface CartItemProps {
   product: ProductInt,
+  disabled: boolean,
+  onDelete: () => void,
 }
 
 const CartItem: FC<CartItemProps> = (props) => {
-  const { product } = props;
-  const { removeId } = useCart();
-
-  const onRemove = () => {
-    removeId(product.id)
-  }
-
+  const { product, disabled, onDelete } = props;
 
   return (
     <li
@@ -94,11 +90,66 @@ const CartItem: FC<CartItemProps> = (props) => {
       >
         <IconButton 
           icon={<X size={15} />}
-          onClick={onRemove}
+          onClick={onDelete}
+          disabled={disabled}
         />
       </div>
     </li>
   )
 }
 
-export { CartItem }
+const CartItemSkeleton: FC = () => {
+  return (
+    <li
+      className="flex flex-col gap-y-4 items-center fle py-6 border-b relative md:flex-row md:items-stretch md:gap-0"
+    >
+      <Skeleton
+        className="relative rounded-md overflow-hidden h-60 w-60 md:h-36 md:w-36"
+      />
+      <div
+        className="relative ml-0 flex flex-1 flex-col justify-between sm:ml-6"
+      >
+        <div
+          className="relative pr-0 sm:grid sm:grid-cols-1 h-full md:grid-cols-2 md:pr-9"
+        >
+          <div
+            className="flex flex-col justify-between"
+          >
+            <Skeleton
+              className="h-7"
+            />
+            <Skeleton
+              className="h-7 w-28"
+            />
+          </div>
+          <div
+            className="mt-1 flex flex-row gap-5 text-sm pr-0 md:pr-9 md:flex-col"
+          >
+            <div
+              className="flex flex-col items-center gap-y-2"
+            >
+              <Skeleton
+                className="h-5 w-24"
+              />
+              <Skeleton
+                className="h-10 w-10 rounded-full"
+              />
+            </div>
+            <div
+              className="flex flex-col items-center gap-y-2"
+            >
+              <Skeleton
+                className="h-5 w-24"
+              />
+              <Skeleton
+                className="h-5 w-16"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+  )
+}
+
+export { CartItem, CartItemSkeleton }

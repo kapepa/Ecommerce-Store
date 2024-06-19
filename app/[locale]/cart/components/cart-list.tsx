@@ -1,34 +1,20 @@
 "use client"
 
-import { getCart } from "@/actions/get-cart";
 import { ProductInt } from "@/interface/product";
-import { FC, useEffect, useState, useTransition } from "react";
-import { CartItem } from "./cart-item";
+import { FC } from "react";
+import { CartItem, CartItemSkeleton } from "./cart-item";
 import { useTranslations } from "next-intl";
-import { useParams } from "next/navigation";
+
 
 interface CartListProps {
-  ids: string[];
+  products: ProductInt[],
+  disabled: boolean,
+  onDelete: (id: string, index: number) => void
 }
 
 const CartList: FC<CartListProps> = (props) => {
-  const { ids } =  props;
-  const { locale } = useParams();
+  const { products, disabled, onDelete } = props
   const t = useTranslations('Cart');
-  const [isPending, startTransition] = useTransition()
-  const [products, setProducts] = useState<ProductInt[] | null>(null);
-
-  useEffect(() => {
-    startTransition(() => {
-      getCart({ ids, locale })
-      .then((products) => setProducts(products))
-      .catch(() => {})
-    })
-  }, [ids, locale]);
-
-  // if (isPending) {
-  //   return 
-  // }
 
   return (
     <>
@@ -44,11 +30,30 @@ const CartList: FC<CartListProps> = (props) => {
           <CartItem
             key={`${product.id}-${index}`}
             product={product}
+            disabled={disabled}
+            onDelete={onDelete.bind(null, product.id, index)}
           />
         ))}
+        
       </ul>
     </>
   )
 }
 
-export { CartList }
+const CartListSkeleton: FC = () => {
+  const skeletonCell = Array(2).fill(null);
+
+  return <>
+    {
+      skeletonCell.map((_, index) => {
+        return (
+          <CartItemSkeleton
+            key={`CartItemSkeleton-${index}`}
+          />
+        )
+      })
+    }
+  </>
+}
+
+export { CartList, CartListSkeleton }

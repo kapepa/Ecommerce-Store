@@ -2,43 +2,34 @@
 
 import { Button } from "@/components/ui/Button";
 import Currency from "@/components/ui/currency";
-import { useCart } from "@/hooks/use-cart";
 import { useSearchParams } from "next/navigation";
 import { FC, useEffect } from "react";
 import toast from "react-hot-toast";
 import { usePersonalInfoModal } from "@/hooks/use-personal-info-modal";
 import { useOrderModal } from "@/hooks/use-order-modal";
 import { useTranslations } from "next-intl";
+import { ProductInt } from "@/interface/product";
+import { Skeleton } from "@/components/ui/skeleton";
 
-const Summary: FC = () => {
+interface SummaryProps {
+  products: ProductInt[],
+  disabled: boolean,
+}
+
+const Summary: FC<SummaryProps> = (props) => {
+  const { products, disabled } = props;
   const t = useTranslations('Cart');
-  const params = useSearchParams();
-  // const items = useCart(state => state.items);
-  // const removeAll = useCart(state => state.removeAll);
-
   const getInfo = usePersonalInfoModal(state => state.info);
   const onOpenPersonalInfo = usePersonalInfoModal(state => state.onOpen);
+  const { onSetOpen } = useOrderModal();
 
-  const openOrder = useOrderModal(state => state.onOpen);
-
-  // useEffect(() => {
-  //   if (params.get("success")){
-  //     toast.success(t("OrderCompleted"));
-  //     removeAll();
-  //   }
-
-  //   if (params.get("canceled")){
-  //     toast.error(t("SomethingWentWrong"))
-  //   }
-  // }, [t, params, removeAll]);
-  
-  // const totalPrice = items.reduce((total, item) => {
-  //   return total + Number(item.price);
-  // }, 0);
+  const totalPrice = products.reduce((total, product) => {
+    return total + Number(product.price);
+  }, 0)
 
   const onCheckout = async () => {
     if(!getInfo || !getInfo.name || !getInfo.phone || !getInfo.address) return onOpenPersonalInfo();
-    openOrder();
+    onSetOpen(products);
   }
 
   return (
@@ -58,20 +49,50 @@ const Summary: FC = () => {
         >
           { t("OrderTotal") }
         </div>
-        {/* <Currency
+        <Currency
           className="text-textBoard"
           values={totalPrice}
-        /> */}
+        />
       </div>
-      {/* <Button
+      <Button
         onClick={onCheckout}
-        disabled={!items.length}
+        disabled={!products.length || disabled}
         className="w-full mt-6"
       >
         { t("Checkout") }
-      </Button> */}
+      </Button>
     </div>
   )
 }
 
-export { Summary }
+const SummarySkeleton: FC = () => {
+  return (
+    <div
+    className="mt-16 rounded-lg bg-bgBoard px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8"
+  >
+    <Skeleton
+      className="w-[80%] h-6 bg-background mb-2"
+    />
+    <div
+      className="flex items-center justify-between border-t border-gray-200 pt-4"
+    >
+      <Skeleton
+        className="w-[30%] h-5 bg-background mr-2"
+      />
+      <Skeleton
+        className="w-[30%] h-5 bg-background"
+      />
+    </div>
+    
+    <Skeleton
+      className="w-full mt-6 py-3 px-4 bg-foreground flex justify-center"
+    >
+      <Skeleton
+        className="w-[30%] h-5 bg-background"
+      />
+    </Skeleton>
+  </div>
+  )
+}
+
+export { Summary, SummarySkeleton }

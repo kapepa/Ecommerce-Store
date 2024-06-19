@@ -9,19 +9,17 @@ import { Separator } from "./ui/separator";
 import Currency from "./ui/currency";
 import { Button } from "./ui/Button";
 import { postCheckout } from "@/actions/post-checkout";
-import { useRouter, useSearchParams } from "next/navigation";
-import queryString from 'query-string';
+import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { useTranslations } from "next-intl";
 
 const OrderModal: FC = () => {
   const router = useRouter();
-  const params = useSearchParams();
-
   const open = useOrderModal(state => state.open);
   const onOrderClose = useOrderModal(state => state.onClose);
   
-  // const getCart = useCart(state => state.items);
+  const { data, onCleanData } = useOrderModal();
+  const { removeAllIds } =  useCart();
 
   const getInfo = usePersonalInfoModal(state => state.info);
   const openPersonalInfo = usePersonalInfoModal(state => state.onOpen);
@@ -29,10 +27,10 @@ const OrderModal: FC = () => {
   const [isPending, startTransition] = useTransition()
   const t = useTranslations('OrderModal');
 
-  // const totalPrice = getCart.reduce((accum, prod) => {
-  //   const sum = accum + Number(prod.price)
-  //   return sum
-  // },0);
+  const totalPrice = data.reduce((accum, prod) => {
+    const sum = accum + Number(prod.price)
+    return sum
+  },0);
 
   const onEditInfo = () => {
     onOrderClose();
@@ -40,29 +38,20 @@ const OrderModal: FC = () => {
   }
 
   const onSend = () => {
-    // startTransition(async () => {
-    //   try {
-    //     const extractId = getCart.map(prod => prod.id);
-    //     const response = await postCheckout({ productIds: extractId, info: getInfo });
+    startTransition(async () => {
+      try {
+        const extractId = data.map(prod => prod.id);
+        await postCheckout({ productIds: extractId, info: getInfo });
 
-    //     const current = queryString.parse(params.toString());
-
-    //     const query = {
-    //       ...current,
-    //       ...response,
-    //     }
-    //     const url = queryString.stringifyUrl({
-    //       url: window.location.href,
-    //       query,
-    //     });
-
-    //     onOrderClose();
-    //     router.push("/");
-    //     toast.success("Your order has been completed successfully.")
-    //   } catch (error) {
-    //     toast.error("Something went wrong.")
-    //   }
-    // })
+        onCleanData()
+        removeAllIds();
+        onOrderClose();
+        router.push("/");
+        toast.success(t("CompletedSuccessfully"))
+      } catch (error) {
+        toast.error(t("SomethingWentWrong"))
+      }
+    })
   }
 
   return (
@@ -154,7 +143,7 @@ const OrderModal: FC = () => {
               </span>
             </div>
             
-            {/* { getCart.map((prod, index) => (
+            { data.map((prod, index) => (
               <div 
                 key={`${prod.id}-${index}`}
                 className="grid grid-cols-2 grid-rows-1 gap-x-6"
@@ -172,7 +161,7 @@ const OrderModal: FC = () => {
                   />
                 </span>
               </div>
-            )) } */}
+            )) }
 
           </div>
         </div>
@@ -188,9 +177,9 @@ const OrderModal: FC = () => {
           <span
             className="text-left"
           >
-            {/* <Currency
+            <Currency
               values={totalPrice.toString()}
-            /> */}
+            />
           </span>
         </div>
         <Separator/>
