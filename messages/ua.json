@@ -42,7 +42,9 @@
     "Address": "Адреса",
     "YourOrder": "Ваше замовлення",
     "OrderTotal": "Загальна сума замовлення",
-    "PersonalInformation": "Персональна інформація"
+    "SomethingWentWrong": "Щось пішло не так",
+    "PersonalInformation": "Персональна інформація",
+    "CompletedSuccessfully": "Ваше замовлення успішно завершено"
   },
   "PersonalInfoModal": {
     "RemainYourContact": "Залишайтеся на зв'язку"
