@@ -65,6 +65,9 @@ const config = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      borderColor: {
+        spinner: "var(--spinner-collor)"
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
@@ -74,10 +77,15 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "spinner-circle": {
+          from: { transform: "rotate(0deg)" },
+          to: { transform: "rotate(360deg)" },
+        }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "spinner-circle": "spinner-circle 1s linear infinite",
       },
     },
     textShadow: {

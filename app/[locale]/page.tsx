@@ -15,9 +15,9 @@ interface NextPageProps {
 const HomePage: NextPage<NextPageProps> = async (props) => {
   const { params: { locale } } = props;
   const billboard = await getBillboard({locale});
-  const products = await getProducts({locale, query: { isFeatured: true }});
+  const products = await getProducts({locale, query: { isFeatured: true, take: 8 }});
   const t = await getTranslations('Home');
-  
+
   return (
     <Container>
       <div 
@@ -32,7 +32,7 @@ const HomePage: NextPage<NextPageProps> = async (props) => {
           <ProductsList
             title={t("FeaturedProducts")}
             locale={locale}
-            products={products}
+            initialProducts={products}
           />
         </div>
       </div>

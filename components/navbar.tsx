@@ -2,8 +2,9 @@ import { FC } from "react";
 import { Container } from "./ui/container";
 import Link from "next/link";
 import { getCategories } from "@/actions/get-categories";
-import { NavbarAction } from "./navbar-action";
-import { RootNav } from "./root-nav";
+import { NavbarAction, NavbarActionSkeleton } from "./navbar-action";
+import { RootNav, RootNavSkeleton } from "./root-nav";
+import { Skeleton } from "./ui/skeleton";
 
 interface NavbarProps {
   locale: string
@@ -44,4 +45,24 @@ const Navbar: FC<NavbarProps> = async (props) => {
   )
 }
 
-export { Navbar }
+const NavbarSkeleton: FC = () => {
+  return (
+    <div
+      className="border-b"
+    >
+      <Container>
+        <div
+          className="relative px-4 sm:px-6 lg:px-8 flex h-16 items-center"
+        >
+          <Skeleton
+            className="w-14 h-7"
+          />
+          <RootNavSkeleton/>
+          <NavbarActionSkeleton/>
+        </div>
+      </Container>
+    </div>
+  )
+}
+
+export { Navbar, NavbarSkeleton }

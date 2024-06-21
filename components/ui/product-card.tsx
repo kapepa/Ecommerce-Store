@@ -11,6 +11,7 @@ import { usePreviewModal } from "@/hooks/use-preview-modal";
 import { useCart } from "@/hooks/use-cart";
 import toast from "react-hot-toast";
 import { useTranslations } from "next-intl";
+import { Skeleton } from "./skeleton";
 
 interface ProductCardProps {
   product: ProductInt,
@@ -109,4 +110,35 @@ const ProductCard: FC<ProductCardProps> = (props) => {
   )
 }
 
-export { ProductCard }
+const ProductCardSkeleton: FC = () => {
+  return (
+    <div
+      className="group cursor-pointer rounded-xl border p-3"
+    >
+      <Skeleton
+        className="aspect-square rounded-xl relative"
+      />
+
+      <div>
+      <div
+        className="flex gap-x-6 justify-center"
+      ></div>
+        <Skeleton
+          className="w-[50%] h-5 mt-2"
+        />
+        <Skeleton
+          className="w-[30%] h-4 mt-2"
+        />
+      </div>
+      <div
+        className="flex items-center justify-between"
+      >
+        <Skeleton
+          className="w-[40%] h-5 mt-2"
+        />
+      </div>
+    </div>
+  )
+}
+
+export { ProductCard, ProductCardSkeleton }

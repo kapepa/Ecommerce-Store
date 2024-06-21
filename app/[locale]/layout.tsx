@@ -47,7 +47,7 @@ async function RootLayout({
             <Navbar
               locale={locale}
             />
-              {children}
+            {children}
             <Footer/>
           </NextIntlClientProvider>
         </ThemeProvider>

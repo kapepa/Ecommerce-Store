@@ -32,6 +32,8 @@
       --input: 214.3 31.8% 10%;
       --ring: 222.2 84% 4.9%;
 
+      --spinner-collor: rgb(2 8 23 / 1) transparent rgb(2 8 23 / 1) transparent;
+
       --radius: 0.5rem;
 
       --bg-btn: black;
@@ -72,6 +74,8 @@
       --input: 1 1% 50%;
       --ring: 212.7 26.8% 83.9%;
 
+      --spinner-collor: rgb(248 250 252 / 1) transparent rgb(248 250 252 / 1) transparent;
+
       --bg-btn: white;
       --bg-btn-revers: black;
       --text-btn: black;
@@ -90,3 +94,5 @@
       @apply bg-background text-foreground;
     }
   }
+
+
