@@ -4,6 +4,7 @@ import { FC, useLayoutEffect, useState } from "react"
 import { SwitcherThemes } from "./switcher-themes";
 import { LocaleSwitch } from "./locale-switcher";
 import { BtnCart } from "./ui/btn-cart";
+import { Skeleton } from "./ui/skeleton";
 
 interface NavbarActionProps {
   locale: string
@@ -17,7 +18,7 @@ const NavbarAction: FC<NavbarActionProps> = (props) => {
     setIsMounted(true);
   }, [setIsMounted])
 
-  if (!isMounted) return null;
+  if (!isMounted) return <NavbarActionSkeleton/>;
 
   return (
     <div
@@ -37,4 +38,22 @@ const NavbarAction: FC<NavbarActionProps> = (props) => {
   )
 }
 
-export { NavbarAction };
+const NavbarActionSkeleton: FC = () => {
+  return (
+    <div
+      className="ml-auto flex items-center gap-x-4"
+    >
+      <Skeleton
+        className="h-8 w-20"
+      />
+      <Skeleton
+        className="h-10 w-20"
+      />
+      <Skeleton
+        className="h-10 w-20 rounded-full"
+      />
+    </div>
+  )
+}
+
+export { NavbarAction, NavbarActionSkeleton };

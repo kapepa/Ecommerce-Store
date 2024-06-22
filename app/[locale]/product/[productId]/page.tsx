@@ -1,6 +1,6 @@
 import { getOneProductById, getProducts } from "@/actions/get-product";
-import { Gallery } from "@/components/gallery";
-import { ProductsList } from "@/components/products-list";
+import { Gallery, } from "@/components/gallery";
+import { RecommendProducts } from "@/components/recommend-products";
 import { Container } from "@/components/ui/container";
 import { ProductInfo } from "@/components/ui/product-info";
 import { NextPage, Metadata } from "next";
@@ -24,8 +24,8 @@ export async function generateMetadata({ params: { locale, productId} }: Product
 
 const ProductIdPage: NextPage<ProductIdPageProps> = async (props) => {
   const { params: { locale, productId } } = props;
-  const product = await getOneProductById({ locale,  id: productId });
-  const suggestedProducts = await getProducts({ locale, query: { categoryId: product?.category.id } });
+  const product = await getOneProductById({ locale, id: productId });
+  const suggestedProducts = await getProducts({ locale, query: { categoryId: product?.category.id, isFeatured: true, take: 4 } });
   const t = await getTranslations("Product");
 
   return (
@@ -50,7 +50,7 @@ const ProductIdPage: NextPage<ProductIdPageProps> = async (props) => {
         <hr
           className="my-10"
         />
-        <ProductsList
+        <RecommendProducts
           title={t("RelatedItems")}
           locale={locale}
           products={suggestedProducts}

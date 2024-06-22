@@ -1,3 +1,4 @@
+import { Skeleton } from "@/components/ui/skeleton";
 import { CategoryInt } from "@/interface/category";
 import { FC } from "react";
 
@@ -32,4 +33,16 @@ const CategoryBoard: FC<CategoryBoardProps> = (props) => {
   )
 }
 
-export { CategoryBoard }
+const CategoryBoardSkeleton: FC = () => {
+  return (
+    <div
+      className="p-4 sm:p-6 lg:p-8 rounded-xl overflow-hidden"
+    >
+      <Skeleton
+        className="rounded-xl relative aspect-square md:aspect-[2.4/1] overflow-hidden bg-cover bg-no-repeat"
+      />
+    </div>
+  )
+}
+
+export { CategoryBoard, CategoryBoardSkeleton }

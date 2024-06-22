@@ -2,7 +2,7 @@
 
 import { CategoryInt } from "@/interface/category";
 import { FC, useEffect, useState, } from "react";
-import { MainNav } from "./main-nav";
+import { MainNav, MainNavSkeleton } from "./main-nav";
 import { MobileNav } from "./mobile-nav";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
@@ -73,4 +73,10 @@ const RootNav: FC<RootNavProps> = (props) => {
   )
 }
 
-export { RootNav }
+const RootNavSkeleton: FC = () => {
+  return (
+    <MainNavSkeleton/>
+  )
+}
+
+export { RootNav, RootNavSkeleton }

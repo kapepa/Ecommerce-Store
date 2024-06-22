@@ -4,6 +4,7 @@ import { NavigationInt } from "@/interface/navigation";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { FC } from "react";
+import { Skeleton } from "./ui/skeleton";
 
 interface MainNavProps {
   className?: string,
@@ -35,4 +36,23 @@ const MainNav: FC<MainNavProps> = (props) => {
   )
 }
 
-export { MainNav };
+const MainNavSkeleton: FC = () => {
+  const cells = Array(4).fill(null);
+
+  return (
+    <nav
+      className="mx-6 flex items-center space-x-4 lg:space-x-6 pr-2"
+    >
+      {
+        cells.map((_, index) => (
+          <Skeleton
+            key={`MainNavSkeleton-${index}`}
+            className="h-6 w-14"
+          />
+        ))
+      }
+    </nav>
+  )
+}
+
+export { MainNav, MainNavSkeleton };

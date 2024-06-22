@@ -8,6 +8,8 @@ interface QueryProductsProps {
   sizeId?:          string
   colorId?:         string
   isFeatured?:      boolean
+  take?:            number
+  skip?:            number
 }
 
 const getProducts = async ({ locale, query }: {locale: string, query: QueryProductsProps}): Promise<ProductInt[] | []> => {
@@ -20,11 +22,13 @@ const getProducts = async ({ locale, query }: {locale: string, query: QueryProdu
         sizeId: query.sizeId,
         colorId: query.colorId,
         isFeatured: query.isFeatured,
+        take: query.take,
+        skip: query.skip,
       }
     })
     const res = await fetch(urlProducts);
 
-    return res.json();
+    return await res.json();
   } catch (error) {
     return []
   }
