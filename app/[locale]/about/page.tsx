@@ -23,55 +23,53 @@ const AboutPage: NextPage<AboutPageProps> = async (props) => {
   }
 
   return (
-    <div>
-      <Container>
-        <div
-           className="px-4 py-10 sm:px-6 lg:px-8"
+    <Container>
+      <div
+          className="px-4 py-10 sm:px-6 lg:px-8"
+      >
+        <h4
+          className="text-3xl font-bold text-foreground leading-6"
         >
-          <h4
-            className="text-3xl font-bold text-foreground leading-6"
+          {t("HeaderAbout")}
+        </h4>
+        <div
+          className="mt-3 flex flex-col pt-6"
+        >
+          <span
+            className="text-lg"
           >
-            {t("HeaderAbout")}
-          </h4>
+            {t("Consultations")}
+          </span>
           <div
-            className="mt-3 flex flex-col pt-6"
+            className="flex gap-x-4 pt-4"
           >
-            <span
-              className="text-lg"
+            <a
+              href={`tel:${about?.phoneOne}`}
             >
-              {t("Consultations")}
-            </span>
-            <div
-              className="flex gap-x-4 pt-4"
-            >
-              <a
-                href={`tel:${about?.phoneOne}`}
-              >
-                {formatPhoneNumber(about?.phoneOne)}
-              </a>
-              {
-                !!about?.phoneTwo && (
-                  <a
-                    href={`tel:${about?.phoneOne}`}
-                  >
-                    {formatPhoneNumber(about?.phoneOne)}
-                  </a>
-                ) 
-              }
-            </div>
-          </div>
-          <div
-            className="pt-6"
-          >
-            <p
-              className="text-sm text-foreground"
-            >
-              {about?.ruText ?? about?.uaText}
-            </p>
+              {formatPhoneNumber(about?.phoneOne)}
+            </a>
+            {
+              !!about?.phoneTwo && (
+                <a
+                  href={`tel:${about?.phoneOne}`}
+                >
+                  {formatPhoneNumber(about?.phoneOne)}
+                </a>
+              ) 
+            }
           </div>
         </div>
-      </Container>
-    </div>
+        <div
+          className="pt-6"
+        >
+          <p
+            className="text-sm text-foreground"
+          >
+            {about?.ruText ?? about?.uaText}
+          </p>
+        </div>
+      </div>
+    </Container>
   )
 }
 

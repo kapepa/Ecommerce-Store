@@ -96,3 +96,10 @@
   }
 
 
+body, html {
+  overflow: visible !important;
+}
+
+html {
+  padding-right: 0!important;
+}

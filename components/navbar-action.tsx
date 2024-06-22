@@ -18,7 +18,7 @@ const NavbarAction: FC<NavbarActionProps> = (props) => {
     setIsMounted(true);
   }, [setIsMounted])
 
-  if (!isMounted) return null;
+  if (!isMounted) return <NavbarActionSkeleton/>;
 
   return (
     <div

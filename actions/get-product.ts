@@ -28,7 +28,7 @@ const getProducts = async ({ locale, query }: {locale: string, query: QueryProdu
     })
     const res = await fetch(urlProducts);
 
-    return res.json();
+    return await res.json();
   } catch (error) {
     return []
   }

@@ -9,6 +9,7 @@ import { BoardColor } from "../board-color";
 import { useTranslations } from "next-intl";
 import { useCart } from "@/hooks/use-cart";
 import toast from "react-hot-toast";
+import { Skeleton } from "./skeleton";
 
 interface ProductInfoProps {
   product: ProductInt | null,
@@ -48,13 +49,10 @@ const ProductInfo: FC<ProductInfoProps> = (props) => {
       <div
         className="mt-3 flex items-end justify-between"
       >
-        <p
+        <Currency 
+          values={product.price}
           className="text-2xl text-foreground"
-        >
-          <Currency 
-            values={product.price}
-          />
-        </p>
+        />
       </div>
       <hr
         className="my-4"
@@ -107,4 +105,67 @@ const ProductInfo: FC<ProductInfoProps> = (props) => {
   )
 }
 
-export { ProductInfo }
+const ProductInfoSkeleton: FC = () => {
+  return (
+    <div>
+      <Skeleton
+        className="h-9 w-[50%]"
+      />
+      <div
+        className="mt-3 flex items-end justify-between"
+      >
+        <Skeleton
+          className="h-9 w-[30%]"
+        />
+      </div>
+      <hr
+        className="my-4"
+      />
+      <div
+        className="flex flex-col gap-y-6"
+      >
+        <div
+          className="flex items-center gap-x-4"
+        >
+          <Skeleton
+            className="h-6 w-14"
+          />
+          <div>
+            <Skeleton
+              className="h-6 w-16"
+            />
+          </div>
+        </div>
+        <div
+          className="flex items-center gap-x-4"
+        >
+          <Skeleton
+            className="h-6 w-16"
+          />
+          <Skeleton
+            className="h-10 w-10 rounded-full"
+          />
+        </div>
+        <div
+          className="flex flex-col gap-x-4"
+        >
+          <Skeleton
+            className="h-6 w-full mb-3"
+          />
+          <Skeleton
+            className="h-6 w-[80%]"
+          />
+        </div>
+        <div
+          className="mt-10 flex items-center gap-x-3"
+        >
+          <Skeleton
+            className="h-10 w-[35%]"
+          />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export { ProductInfo, ProductInfoSkeleton }

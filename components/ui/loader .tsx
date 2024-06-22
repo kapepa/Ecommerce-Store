@@ -20,4 +20,6 @@ const Loader = forwardRef((props: LoaderProps, ref: ForwardedRef<HTMLDivElement>
   )
 })
 
+Loader.displayName = "Loader"
+
 export { Loader }
