@@ -66,5 +66,9 @@
     "ItemAlreadyInCart": "Товар уже в кошику.",
     "ItemRemovedFromTheCart": "Товар видалено з кошика.",
     "AllItemsRemovedFromTheCart": "Всі елементи вилучені з картки"
+  },
+  "NotFound": {
+    "PageNotFound404": "Сторінку не знайдено 404",
+    "BackToTheMainPage": "Назад до головної сторінки"
   }
 }
