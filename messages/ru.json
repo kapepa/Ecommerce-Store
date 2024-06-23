@@ -66,5 +66,9 @@
     "ItemAlreadyInCart": "Товар уже в корзине.",
     "ItemRemovedFromTheCart": "Товар удален из корзины.",
     "AllItemsRemovedFromTheCart": "Все товары удалены из корзины."
+  },
+  "NotFound": {
+    "PageNotFound404": "Страница не найдена 404",
+    "BackToTheMainPage": "Назад к главной странице"
   }
 }
